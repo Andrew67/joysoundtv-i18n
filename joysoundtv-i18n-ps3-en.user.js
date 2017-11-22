@@ -23,7 +23,7 @@ if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextIfExists('h2.subtitle.login', '', 'Log In');
     domReplaceTextIfExists('h3.subtitle.gy', 'パスワード', 'Password (パスワード)');
     domReplaceTextIfExists('h3.subtitle.gy', 'かんたんログイン', 'Easy Login');
-    domReplaceTextInHtmlIfExists('p.mb30', 'ログイン状態を保持する', 'Stay logged in');
+    domReplaceTextInHtmlIfExists('p.mb30', 'ログイン状態を保持する', '<label for="el">Stay logged in</label>');
     domReplaceTextIfExists('ul.kome > li', 'ログアウト', '※ Logging out will undo the "Stay logged in" option.');
     domAddClassIfExists('p.btn', '', 'loginBtn');
     domReplaceTextIfExists('.loginBtn > a', '', 'Log In');
