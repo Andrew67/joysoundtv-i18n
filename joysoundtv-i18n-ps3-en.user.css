@@ -39,12 +39,17 @@
 
 /* Search box */
 .search_box > .search_btn > a {
+    background: url('https://vt.joysound.tv/kyokunavi_site/images/btn_search.png') repeat-x -15px top;
     text-decoration: none;
-    text-align: center;
-    background: linear-gradient(to bottom, #f6f8f5, #d2d2d2);
     line-height: 40px;
     font-size: 24px;
     font-weight: bold;
+}
+
+.search_box > .search_btn > a > span {
+    background: linear-gradient(to bottom, #ededed, #d2d2d2);
+    display: inline-block;
+    width: 125px;
+    margin-left: 75px;
     height: 40px;
-    margin-bottom: 10px;
 }
