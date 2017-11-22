@@ -66,6 +66,7 @@ if (domNodeExists('[name=webtool_search_form]')) {
 
     domReplaceTextIfExists('#match_type_partial_label', '', 'Contains');
     domReplaceTextIfExists('#match_type_head_label', '', 'Starts with');
+    domReplaceTextInHtmlIfExists('.search_btn > a', /.*/, '🔍 Search');
 }
 
 // Translate search results (by detecting the pager)

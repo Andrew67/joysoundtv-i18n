@@ -32,3 +32,14 @@
     text-decoration: none;
     font-weight: bold;
 }
+
+.search_box > .search_btn > a {
+    text-decoration: none;
+    text-align: center;
+    background: linear-gradient(to bottom, #f6f8f5, #d2d2d2);
+    line-height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    height: 40px;
+    margin-bottom: 10px;
+}
