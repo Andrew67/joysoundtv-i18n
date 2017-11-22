@@ -17,6 +17,9 @@
  */
 "use strict";
 
+// Translate global strings
+domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/, "※ Unauthorized reproduction of this website's content is forbidden.");
+
 // Translate the login page (by detecting the login header)
 if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextInHtmlIfExists('title', 'ログイン', 'Log In');
@@ -27,19 +30,21 @@ if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextIfExists('ul.kome > li', 'ログアウト', '※ Logging out will undo the "Stay logged in" option.');
     domAddClassIfExists('p.btn', '', 'loginBtn');
     domReplaceTextIfExists('.loginBtn > a', '', 'Log In');
-    domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/, "※ Unauthorized reproduction of this website's content is forbidden.");
 
     domReplaceTextInHtmlIfExists('p.message', /.*パスワードが間違っています.*/, 'The Password is incorrect.<br>(QR Codes are valid from one hour after they are issued. Please enter a reissued QR Code or Password.)');
     domReplaceTextInHtmlIfExists('p.message', /.*有効期限が切れています.*/, 'The QR Code or Password you have entered is expired.<br>Please enter a reissued QR Code or Password.');
     domReplaceTextIfExists('p.message', 'パスワードを入力してください。', 'Please enter a Password.');
 }
 
-// Translate main menu page (by detecting search form)
-if (domNodeExists('[name=webtool_search_form]')) {
+// Translate main menu page (by detecting the categories header)
+if (domNodeExists('h2.subtitle.pp')) {
     domReplaceTextIfExists('h2.subtitle.bl', '', 'Search Menu');
     domReplaceTextIfExists('h2.subtitle.pp', '', 'Categories');
     domReplaceTextIfExists('h2.subtitle.gr', '', 'My Data');
+}
 
+// Translate search form
+if (domNodeExists('[name=webtool_search_form]')) {
     domReplaceTextIfExists('option[value="0"]', '', 'Select a genre');
     domReplaceTextIfExists('option[value="8"]', '', 'Anime / Tokusatsu');
     domReplaceTextIfExists('option[value="9"]', '', 'Video Games');
