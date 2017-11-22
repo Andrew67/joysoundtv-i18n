@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "joysoundtv-i18n",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://vt.joysound.tv/kyokunavi/ps3/*"
+      ],
+      "js": [
+        "domUtil.js",
+        "joysoundtv-i18n-ps3-en.user.js"
+      ],
+      "css": [
+        "joysoundtv-i18n-ps3-en.user.css"
+      ]
+    }
+  ]
+}
