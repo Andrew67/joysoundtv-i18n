@@ -45,25 +45,36 @@ if (domNodeExists('h2.subtitle.pp')) {
 
 // Translate search form
 if (domNodeExists('[name=webtool_search_form]')) {
-    domReplaceTextIfExists('option[value="0"]', '', 'Select a genre');
-    domReplaceTextIfExists('option[value="8"]', '', 'Anime / Tokusatsu');
-    domReplaceTextIfExists('option[value="9"]', '', 'Video Games');
-    domReplaceTextIfExists('option[value="28"]', '', 'TV Dramas');
-    domReplaceTextIfExists('option[value="42"]', '', 'TV / Radio');
-    domReplaceTextIfExists('option[value="44"]', '', 'Movies');
-    domReplaceTextIfExists('option[value="2"]', '', 'Western');
-    domReplaceTextIfExists('option[value="5"]', '', 'Musicals');
-    domReplaceTextIfExists('option[value="17"]', '', 'Pop');
-    domReplaceTextIfExists('option[value="16"]', '', 'Rock');
-    domReplaceTextIfExists('option[value="19"]', '', 'R&B / Soul / Hip-Hop');
-    domReplaceTextIfExists('option[value="29"]', '', 'Medley');
-    domReplaceTextIfExists('option[value="30"]', '', 'Sports');
-    domReplaceTextIfExists('option[value="32"]', '', 'Wedding');
-    domReplaceTextIfExists('option[value="31"]', '', 'Christmas');
-    domReplaceTextIfExists('option[value="33"]', '', 'Choir');
-    domReplaceTextIfExists('option[value="22"]', '', 'Kids');
-    domReplaceTextIfExists('option[value="12"]', '', "Folk (Min'you / Enka / Kayoukyoku)");
+    domReplaceTextIfExists('select.genre > option[value="0"]', '', 'Select a genre');
+    domReplaceTextIfExists('select.genre > option[value="8"]', '', 'Anime / Tokusatsu');
+    domReplaceTextIfExists('select.genre > option[value="9"]', '', 'Video Games');
+    domReplaceTextIfExists('select.genre > option[value="28"]', '', 'TV Dramas');
+    domReplaceTextIfExists('select.genre > option[value="42"]', '', 'TV / Radio');
+    domReplaceTextIfExists('select.genre > option[value="44"]', '', 'Movies');
+    domReplaceTextIfExists('select.genre > option[value="2"]', '', 'Western');
+    domReplaceTextIfExists('select.genre > option[value="5"]', '', 'Musicals');
+    domReplaceTextIfExists('select.genre > option[value="17"]', '', 'Pop');
+    domReplaceTextIfExists('select.genre > option[value="16"]', '', 'Rock');
+    domReplaceTextIfExists('select.genre > option[value="19"]', '', 'R&B / Soul / Hip-Hop');
+    domReplaceTextIfExists('select.genre > option[value="29"]', '', 'Medley');
+    domReplaceTextIfExists('select.genre > option[value="30"]', '', 'Sports');
+    domReplaceTextIfExists('select.genre > option[value="32"]', '', 'Wedding');
+    domReplaceTextIfExists('select.genre > option[value="31"]', '', 'Christmas');
+    domReplaceTextIfExists('select.genre > option[value="33"]', '', 'Choir');
+    domReplaceTextIfExists('select.genre > option[value="22"]', '', 'Kids');
+    domReplaceTextIfExists('select.genre > option[value="12"]', '', "Folk (Min'you / Enka / Kayoukyoku)");
 
     domReplaceTextIfExists('#match_type_partial_label', '', 'Contains');
     domReplaceTextIfExists('#match_type_head_label', '', 'Starts with');
+}
+
+// Translate search results (by detecting the pager)
+if (domNodeExists('span#paging_root')) {
+    domAddClassIfExists('title', '', 'hasSearchParam');
+    domAddClassIfExists('h2.subtitle.bl', 'で検索中', 'hasSearchParam');
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, 'Searching for: $1');
+    domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /1件\((.*)件目表示\)/, '1 result');
+    domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /(.*)件\((.*)件目表示\)/, '$1 results (displaying $2)');
+    domReplaceTextInHtmlIfExists('.pagenav .prev a', /前の(.*)件/, ' Previous $1');
+    domReplaceTextInHtmlIfExists('.pagenav .next a', /次の(.*)件/, 'Next $1 ');
 }
