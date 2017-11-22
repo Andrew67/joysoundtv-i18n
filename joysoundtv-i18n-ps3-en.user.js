@@ -29,7 +29,7 @@ if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextInHtmlIfExists('p.mb30', 'ログイン状態を保持する', '<label for="el">Stay logged in</label>');
     domReplaceTextIfExists('ul.kome > li', 'ログアウト', '※ Logging out will undo the "Stay logged in" option.');
     domAddClassIfExists('p.btn', '', 'loginBtn');
-    domReplaceTextIfExists('.loginBtn > a', '', 'Log In');
+    domReplaceTextInHtmlIfExists('.loginBtn > a', /.*/, '<span>Log In</span>');
 
     domReplaceTextInHtmlIfExists('p.message', /.*パスワードが間違っています.*/, 'The Password is incorrect.<br>(QR Codes are valid from one hour after they are issued. Please enter a reissued QR Code or Password.)');
     domReplaceTextInHtmlIfExists('p.message', /.*有効期限が切れています.*/, 'The QR Code or Password you have entered is expired.<br>Please enter a reissued QR Code or Password.');

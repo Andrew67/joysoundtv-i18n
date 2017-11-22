@@ -18,21 +18,26 @@
 
 /* Login page */
 .loginBtn {
-    background: url('https://vt.joysound.tv/kyokunavi_site/images/bg_btn.png') repeat-x left top;
     text-indent: 0;
-    width: 160px;
 }
 
 .loginBtn > a {
     color: #fff;
-    background: url('https://vt.joysound.tv/kyokunavi_site/images/arrow04.png') no-repeat 5px center;
-    padding-left: 30px;
-    font-size: 16px;
+    font-size: 24px;
     line-height: 50px;
     text-decoration: none;
     font-weight: bold;
 }
 
+.loginBtn > a > span {
+    background: linear-gradient(to bottom, #b0b0b0, #636363);
+    display: inline-block;
+    width: 110px;
+    margin-left: 50px;
+    height: 50px;
+}
+
+/* Search box */
 .search_box > .search_btn > a {
     text-decoration: none;
     text-align: center;
