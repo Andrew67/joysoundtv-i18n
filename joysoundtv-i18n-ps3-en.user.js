@@ -19,6 +19,7 @@
 
 // Translate the login page (by detecting the login header)
 if (domNodeExists('h2.subtitle.login')) {
+    domReplaceTextInHtmlIfExists('title', 'ログイン', 'Log In');
     domReplaceTextIfExists('h2.subtitle.login', '', 'Log In');
     domReplaceTextIfExists('h3.subtitle.gy', 'パスワード', 'Password (パスワード)');
     domReplaceTextIfExists('h3.subtitle.gy', 'かんたんログイン', 'Easy Login');
