@@ -38,6 +38,20 @@ function domReplaceTextIfExists (selector, containsText, newText) {
 }
 
 /**
+ * Replaces the matching elements' innerText if they exist.
+ * @param selector - Query selector
+ * @param map - Map of original text (must match entirely) to new text mapping.
+ */
+function domReplaceTextUsingMapIfExists (selector, map) {
+    let nodes = document.querySelectorAll(selector);
+    for (let node of nodes) {
+        if (map.has(node.innerText)) {
+            node.innerText = map.get(node.innerText);
+        }
+    }
+}
+
+/**
  * Replaces the matching elements' innerHTML if they exist.
  * @param selector - Query selector
  * @param oldText - Text to replace (in it's entirety, or a regex)

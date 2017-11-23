@@ -20,6 +20,31 @@
 // Translate global strings
 domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/, "※ Unauthorized reproduction of this website's content is forbidden.");
 
+/** Genre translations (used for drop-down and search results page) */
+const genres = new Map([
+    ['ジャンルを選ぶ', 'Select a genre'],
+    ['アニメ/特撮', 'Anime / Tokusatsu'],
+    ['ゲーム', 'Video Games'],
+    ['VOCALOID', 'VOCALOID'],
+    ['TVドラマ', 'TV Dramas'],
+    ['TV･ラジオ', 'TV / Radio'],
+    ['CM', 'CM'],
+    ['映画', 'Movies'],
+    ['洋楽', 'Western'],
+    ['K-POP', 'K-POP'],
+    ['ミュージカル', 'Musicals'],
+    ['ポップス', 'Pop'],
+    ['ロック', 'Rock'],
+    ['R＆B/ソウル/ヒップホップ', 'R&B / Soul / Hip-Hop'],
+    ['メドレー', 'Medley'],
+    ['スポーツ/応援歌', 'Sports'],
+    ['ウェディング', 'Wedding'],
+    ['クリスマス', 'Christmas'],
+    ['合唱', 'Choir'],
+    ['童謡/唱歌/キッズ', 'Kids'],
+    ['民謡/演歌/歌謡曲', "Folk (Min'you / Enka / Kayoukyoku)"]
+]);
+
 // Translate the login page (by detecting the login header)
 if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextInHtmlIfExists('title', 'ログイン', 'Log In');
@@ -45,25 +70,7 @@ if (domNodeExists('h2.subtitle.pp')) {
 
 // Translate search form
 if (domNodeExists('[name=webtool_search_form]')) {
-    domReplaceTextIfExists('select.genre > option[value="0"]', '', 'Select a genre');
-    domReplaceTextIfExists('select.genre > option[value="8"]', '', 'Anime / Tokusatsu');
-    domReplaceTextIfExists('select.genre > option[value="9"]', '', 'Video Games');
-    domReplaceTextIfExists('select.genre > option[value="28"]', '', 'TV Dramas');
-    domReplaceTextIfExists('select.genre > option[value="42"]', '', 'TV / Radio');
-    domReplaceTextIfExists('select.genre > option[value="44"]', '', 'Movies');
-    domReplaceTextIfExists('select.genre > option[value="2"]', '', 'Western');
-    domReplaceTextIfExists('select.genre > option[value="5"]', '', 'Musicals');
-    domReplaceTextIfExists('select.genre > option[value="17"]', '', 'Pop');
-    domReplaceTextIfExists('select.genre > option[value="16"]', '', 'Rock');
-    domReplaceTextIfExists('select.genre > option[value="19"]', '', 'R&B / Soul / Hip-Hop');
-    domReplaceTextIfExists('select.genre > option[value="29"]', '', 'Medley');
-    domReplaceTextIfExists('select.genre > option[value="30"]', '', 'Sports');
-    domReplaceTextIfExists('select.genre > option[value="32"]', '', 'Wedding');
-    domReplaceTextIfExists('select.genre > option[value="31"]', '', 'Christmas');
-    domReplaceTextIfExists('select.genre > option[value="33"]', '', 'Choir');
-    domReplaceTextIfExists('select.genre > option[value="22"]', '', 'Kids');
-    domReplaceTextIfExists('select.genre > option[value="12"]', '', "Folk (Min'you / Enka / Kayoukyoku)");
-
+    domReplaceTextUsingMapIfExists('select.genre > option', genres);
     domReplaceTextIfExists('#match_type_partial_label', '', 'Contains');
     domReplaceTextIfExists('#match_type_head_label', '', 'Starts with');
     domReplaceTextInHtmlIfExists('.search_btn > a', /.*/, '<span>Search</span>');
