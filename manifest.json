@@ -22,5 +22,10 @@
   "icons": {
     "48": "noun_975688_cc.svg",
     "96": "noun_975688_cc.svg"
+  },
+  "applications": {
+    "gecko": {
+      "id": "joysoundtv-i18n@andrew67.com"
+    }
   }
 }
