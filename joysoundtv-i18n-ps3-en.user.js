@@ -19,6 +19,8 @@
 
 // Translate global strings
 domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/, "※ Unauthorized reproduction of this website's content is forbidden.");
+domReplaceTextIfExists('a', 'はい', 'Yes');
+domReplaceTextIfExists('a', 'いいえ', 'No');
 
 /** Genre translations (used for drop-down and search results page) */
 const genres = new Map([
@@ -81,6 +83,7 @@ if (domNodeExists('[name=webtool_search_form]')) {
 }
 
 // Translate search query (can appear in main page as well as search results page)
+// TODO: Use URLSearchParams to parse out search parameter from URL, as the page one cuts off after 10 characters
 domAddClassIfExists('title', 'で検索中', 'hasSearchParam');
 domAddClassIfExists('h2.subtitle.bl', 'で検索中', 'hasSearchParam');
 domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, 'Searching for: $1');
@@ -95,12 +98,25 @@ domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, functi
 
 // Translate search results page items (by detecting the pager)
 if (domNodeExists('span#paging_root')) {
+    // Navigation
     domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /^1件\((.*)件目表示\)/, '1 result');
     domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /(.*)件\((.*)件目表示\)/, '$1 results (displaying $2)');
     domReplaceTextInHtmlIfExists('.pagenav .prev a', /前の(.*)件/, ' Previous $1');
     domReplaceTextInHtmlIfExists('.pagenav .next a', /次の(.*)件/, 'Next $1 ');
     domReplaceTextIfExists('p.mark_ps3', '採点不可', 'Scoring unavailable');
 
+    // Hide the rank kanji for ranking lists
+    domReplaceTextInHtmlIfExists('li.item_song_option p.ranking', '位', '');
+
+    // Song queue header and options
+    domReplaceTextInHtmlIfExists('title', '予約一覧', 'Queue');
+    domReplaceTextIfExists('h2.subtitle.ye', '予約一覧', 'Queue');
+    domReplaceTextIfExists('.reserve_list a', '選択削除', 'Delete selected');
+    domReplaceTextIfExists('#schedule_selectdel_confirm h2', '', 'Delete selected songs from the queue?');
+    domReplaceTextIfExists('.reserve_list a', 'すべて削除', 'Delete all');
+    domReplaceTextIfExists('#schedule_del_confirm h2', '', 'Delete all songs from the queue?');
+
+    // Song action items
     domReplaceTextIfExists('.data th', '歌い出し', 'First line');
     domReplaceTextIfExists('.data th', 'タイアップ', 'Tie-in');
 
