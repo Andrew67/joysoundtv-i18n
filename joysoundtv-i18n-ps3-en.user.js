@@ -71,6 +71,10 @@ if (domNodeExists('h2.subtitle.pp')) {
 // Translate search form
 if (domNodeExists('[name=webtool_search_form]')) {
     domReplaceTextUsingMapIfExists('select.genre > option', genres);
+    domReplaceTextInHtmlIfExists('#search_type_song span', /.*/, '<a>Name</a>');
+    domReplaceTextInHtmlIfExists('#search_type_artist span', /.*/, '<a>Artist</a>');
+    domReplaceTextInHtmlIfExists('#search_type_keyword span', /.*/, '<a>Keyword</a>');
+    domReplaceTextInHtmlIfExists('#search_type_karaoke_id span', /.*/, '<a>Song ID</a>');
     domReplaceTextIfExists('#match_type_partial_label', '', 'Contains');
     domReplaceTextIfExists('#match_type_head_label', '', 'Starts with');
     domReplaceTextInHtmlIfExists('.search_btn > a', /.*/, '<span>Search</span>');

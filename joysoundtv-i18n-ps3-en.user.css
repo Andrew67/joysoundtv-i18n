@@ -53,3 +53,45 @@
     margin-left: 75px;
     height: 40px;
 }
+
+/* Main page buttons (Name, Artist, New Arrivals, My Songs) */
+ul.search li, ul.info li, ul.mydata li {
+    text-indent: 0;
+}
+
+ul.search li > span, ul.info li > a, ul.mydata li > a {
+    text-decoration: none;
+    line-height: 79px;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+ul.search li > span > a, ul.info li > a > span, ul.mydata li > a > span {
+    display: inline-block;
+    background: linear-gradient(to bottom, #828282, #666666);
+}
+
+ul.search li > span > a:hover {
+    color: white;
+}
+
+#search_type_song a {
+    margin-left: 109px;
+    width: 60px;
+}
+
+#search_type_artist a {
+    margin-left: 97px;
+    width: 85px;
+}
+
+#search_type_keyword a {
+    margin-left: 77px;
+    width: 110px;
+}
+
+#search_type_karaoke_id a {
+    margin-left: 86px;
+    width: 100px;
+}
