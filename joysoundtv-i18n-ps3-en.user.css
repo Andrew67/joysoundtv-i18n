@@ -95,3 +95,11 @@ ul.search li > span > a:hover {
     margin-left: 86px;
     width: 100px;
 }
+
+/* Search result "My Data" Save/Delete buttons (dynamically updating) */
+.result_btn .regist_m .mysong::before, .result_btn .regist_m .myartist::before {
+    content: "Save ";
+}
+.result_btn .regist_m .mysong.cancel::before, .result_btn .regist_m .myartist.cancel::before {
+    content: "Delete ";
+}

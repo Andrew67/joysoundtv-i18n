@@ -99,4 +99,30 @@ if (domNodeExists('span#paging_root')) {
     domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /(.*)件\((.*)件目表示\)/, '$1 results (displaying $2)');
     domReplaceTextInHtmlIfExists('.pagenav .prev a', /前の(.*)件/, ' Previous $1');
     domReplaceTextInHtmlIfExists('.pagenav .next a', /次の(.*)件/, 'Next $1 ');
+    domReplaceTextIfExists('p.mark_ps3', '採点不可', 'Scoring unavailable');
+
+    domReplaceTextIfExists('.data th', '歌い出し', 'First line');
+    domReplaceTextIfExists('.data th', 'タイアップ', 'Tie-in');
+
+    domReplaceTextIfExists('.result_btn.keyset dt', '', '● Reserve');
+
+    domReplaceTextIfExists('.reserve_m.key .key_t', 'キー設定', 'Key');
+    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="0"]', '', '0 (Original)');
+    domReplaceTextIfExists('.reserve_m.key .set_originalkey_selectbox_process > a', '', 'Reset');
+
+    domReplaceTextIfExists('.reserve_m.key .key_t', '曲タイプ', 'Video');
+    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="sound"]', '', 'Off');
+    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="movie"]', '', 'On');
+
+    domReplaceTextIfExists('.result_btn dt:first-child:empty', '', 'Select a scoring/grading option below to add song to queue:');
+    domReplaceTextIfExists('.reserve_m a', '全国採点', 'Ranking');
+    domReplaceTextIfExists('.reserve_m a', '分析採点', 'Analysis');
+    domReplaceTextIfExists('.reserve_m a', '採点オフ', 'Off');
+
+    domReplaceTextIfExists('.result_btn dt', '●登録', '● My Data');
+    domReplaceTextIfExists('.result_btn .regist_m .mysong', '', 'song');
+    domReplaceTextIfExists('.result_btn .regist_m .myartist', '', 'artist');
+
+    domReplaceTextIfExists('.result_btn dt', '●アーティスト', '● Artist');
+    domReplaceTextIfExists('.result_btn .regist_m.m_list a', '', 'See more songs');
 }
