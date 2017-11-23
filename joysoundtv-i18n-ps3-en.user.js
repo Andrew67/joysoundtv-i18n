@@ -76,12 +76,22 @@ if (domNodeExists('[name=webtool_search_form]')) {
     domReplaceTextInHtmlIfExists('.search_btn > a', /.*/, '<span>Search</span>');
 }
 
-// Translate search results (by detecting the pager)
+// Translate search query (can appear in main page as well as search results page)
+domAddClassIfExists('title', 'で検索中', 'hasSearchParam');
+domAddClassIfExists('h2.subtitle.bl', 'で検索中', 'hasSearchParam');
+domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, 'Searching for: $1');
+
+// Genre search
+domAddClassIfExists('title', 'を検索中', 'hasSearchParam');
+domAddClassIfExists('h2.subtitle.bl', 'を検索中', 'hasSearchParam');
+domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, function (match, p1) {
+    if (genres.has(p1)) return 'Searching for genre: ' + genres.get(p1);
+    return 'Searching for: ' + p1;
+});
+
+// Translate search results page items (by detecting the pager)
 if (domNodeExists('span#paging_root')) {
-    domAddClassIfExists('title', '', 'hasSearchParam');
-    domAddClassIfExists('h2.subtitle.bl', 'で検索中', 'hasSearchParam');
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, 'Searching for: $1');
-    domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /1件\((.*)件目表示\)/, '1 result');
+    domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /^1件\((.*)件目表示\)/, '1 result');
     domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /(.*)件\((.*)件目表示\)/, '$1 results (displaying $2)');
     domReplaceTextInHtmlIfExists('.pagenav .prev a', /前の(.*)件/, ' Previous $1');
     domReplaceTextInHtmlIfExists('.pagenav .next a', /次の(.*)件/, 'Next $1 ');
