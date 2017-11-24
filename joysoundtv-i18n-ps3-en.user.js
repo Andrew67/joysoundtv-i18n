@@ -47,8 +47,13 @@ const categories = new Map([
     ['総合ランキング', 'Overall Rank'],
     ['ジャンル別ランキング', 'Rankings by Genre'],
     ['新着曲', 'New Arrivals'],
-    ['特集', 'Featured']
+    ['特集', 'Featured'],
+    ['いままでの特集', 'Featured']
 ]);
+
+/** Months (used for new arrivals) */
+const months = ['', 'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
 
 // Translate global strings
 domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/,
@@ -174,12 +179,22 @@ if (domNodeExists('span#paging_root')) {
     domReplaceTextIfExists('.result_btn dt', '●アーティスト', '● Artist');
     domReplaceTextIfExists('.result_btn .regist_m.m_list a', '', 'See more songs');
 
-    // Translate genres when showing the "Rankings by Genre" pages
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /ジャンル別ランキング/, categories.get('ジャンル別ランキング'));
+    // Translate category types and genres when showing the category pages
+    domReplaceTextUsingMapIfExists('.hasSearchParam', categories);
     domReplaceTextUsingMapIfExists('.hasSearchParam', genres);
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
+        if (categories.has(p1)) return categories.get(p1) + ' |';
+        return p1 + ' |';
+    });
     domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
         if (genres.has(p1)) return genres.get(p1) + ' |';
         return p1 + ' |';
     });
     domReplaceTextUsingMapIfExists('.item_category a', genres);
+
+    // Translate new arrivals
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /新着曲/, categories.get('新着曲') + ' ');
+    domReplaceTextInHtmlIfExists('.item_category a', /(.*)月(.*)日の新着一覧へ/, function (match, p1, p2) {
+        return months[p1] + ' ' + p2;
+    });
 }
