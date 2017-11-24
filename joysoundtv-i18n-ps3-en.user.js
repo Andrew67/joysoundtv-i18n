@@ -51,6 +51,23 @@ const categories = new Map([
     ['いままでの特集', 'Featured']
 ]);
 
+/** Featured category translations (similar to genres) */
+const featured_categories = new Map([
+    ['盛り上げソング', 'Lively Songs'],
+    ['ドラマ・アニメソング', 'Drama & Anime Songs'],
+    ['バラード', 'Ballads'],
+    ['スポーツソング', 'Sports Songs'],
+    ['夏のうた', 'Summer Songs'],
+    ['旅のうた', 'Travel Songs'],
+    ['雨のうた', 'Rainy Day Songs'],
+    ['新生活ソング', 'New Lifestyle Songs'],
+    ['卒業ソング', 'Graduation Songs'],
+    ['恋のうた', 'Love Songs'],
+    ['冬のうた', 'Winter Songs'],
+    ['クリスマスソング', 'Christmas Songs'],
+    ['宴会ソングピックアップ　カラオケスタート編', 'Party Song Picks']
+]);
+
 /** Months (used for new arrivals) */
 const months = ['', 'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
@@ -196,5 +213,14 @@ if (domNodeExists('span#paging_root')) {
     domReplaceTextInHtmlIfExists('.hasSearchParam', /新着曲/, categories.get('新着曲') + ' ');
     domReplaceTextInHtmlIfExists('.item_category a', /(.*)月(.*)日の新着一覧へ/, function (match, p1, p2) {
         return months[p1] + ' ' + p2;
+    });
+
+    // Translate featured categories
+    // Strip the "featured" marker, then match using the map (like for genres)
+    domReplaceTextInHtmlIfExists('.hasSearchParam, .item_category a', /特集[　 ]/, '');
+    domReplaceTextUsingMapIfExists('.hasSearchParam, .item_category a', featured_categories);
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
+        if (featured_categories.has(p1)) return featured_categories.get(p1) + ' |';
+        return p1 + ' |';
     });
 }
