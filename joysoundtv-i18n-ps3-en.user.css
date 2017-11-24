@@ -115,7 +115,6 @@ ul.info li.i01 > a > span {
 ul.info li.i02 > a > span {
     margin-left: 44px;
 }
-
 ul.info li.i02 > a {
     background-repeat: repeat-x;
     background-position-x: -44px;
@@ -129,10 +128,34 @@ ul.info li.i03 > a > span {
 ul.info li.i04 > a > span {
     margin-left: 68px;
 }
-
 ul.info li.i04 > a {
     background-repeat: repeat-x;
     background-position-x: -32px;
+}
+
+ul.mydata li.m01 > a > span {
+    margin-left: 119px;
+}
+ul.mydata li.m01 > a {
+    background-repeat: repeat-x;
+    background-position-x: -10px;
+}
+
+ul.mydata li.m02 > a > span {
+    margin-left: 110px;
+    width: 175px;
+}
+ul.mydata li.m02 > a {
+    background-repeat: repeat-x;
+    background-position-x: 24px;
+}
+
+ul.mydata li.m03 > a > span {
+    margin-left: 125px;
+}
+ul.mydata li.m03 > a {
+    background-repeat: repeat-x;
+    background-position-x: -15px;
 }
 
 /* Search result "My Data" Save/Delete buttons (dynamically updating) */

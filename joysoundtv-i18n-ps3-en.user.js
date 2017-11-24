@@ -82,6 +82,9 @@ if (domNodeExists('h2.subtitle.pp')) {
     domReplaceTextInHtmlIfExists('ul.info li.i04 a', /.*/, '<span>Featured</span>');
 
     domReplaceTextIfExists('h2.subtitle.gr', '', 'My Data');
+    domReplaceTextInHtmlIfExists('ul.mydata li.m01 a', /.*/, '<span>My Songs</span>');
+    domReplaceTextInHtmlIfExists('ul.mydata li.m02 a', /.*/, '<span>My Artists</span>');
+    domReplaceTextInHtmlIfExists('ul.mydata li.m03 a', /.*/, '<span>History</span>');
 }
 
 // Translate search form
