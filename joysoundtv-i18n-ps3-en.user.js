@@ -68,6 +68,13 @@ const featured_categories = new Map([
     ['宴会ソングピックアップ　カラオケスタート編', 'Party Song Picks']
 ]);
 
+/** "My Data" section translations */
+const mydata_sections = new Map([
+    ['マイうた', 'My Songs'],
+    ['マイアーティスト', 'My Artists'],
+    ['りれき', 'History']
+]);
+
 /** Months (used for new arrivals) */
 const months = ['', 'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
@@ -81,6 +88,7 @@ domReplaceTextIfExists('ul#gnav > li.g01 > a', '', 'How-to');
 domReplaceTextIfExists('ul#gnav > li.g02 > a', '', 'Categories');
 domReplaceTextUsingMapIfExists('ul#gnav > li.g02 > ul.sub a', categories);
 domReplaceTextIfExists('ul#gnav > li.g03 > a', '', 'My Data');
+domReplaceTextUsingMapIfExists('ul#gnav > li.g03 > ul.sub a', mydata_sections);
 domReplaceTextIfExists('ul#gnav > li.g04 > a', '', 'Queue');
 domReplaceTextIfExists('ul#gnav > li.g05 > a', '', 'Search');
 domReplaceTextInHtmlIfExists('a[href="/kyokunavi/ps3/session/logout"]', /.*/, '<span>Log Out</span>');
@@ -114,9 +122,9 @@ if (domNodeExists('h2.subtitle.pp')) {
     domReplaceTextInHtmlIfExists('ul.info li.i04 a', /.*/, '<span>' + categories.get('特集') + '</span>');
 
     domReplaceTextIfExists('h2.subtitle.gr', '', 'My Data');
-    domReplaceTextInHtmlIfExists('ul.mydata li.m01 a', /.*/, '<span>My Songs</span>');
-    domReplaceTextInHtmlIfExists('ul.mydata li.m02 a', /.*/, '<span>My Artists</span>');
-    domReplaceTextInHtmlIfExists('ul.mydata li.m03 a', /.*/, '<span>History</span>');
+    domReplaceTextInHtmlIfExists('ul.mydata li.m01 a', /.*/, '<span>' + mydata_sections.get('マイうた') + '</span>');
+    domReplaceTextInHtmlIfExists('ul.mydata li.m02 a', /.*/, '<span>' + mydata_sections.get('マイアーティスト') + '</span>');
+    domReplaceTextInHtmlIfExists('ul.mydata li.m03 a', /.*/, '<span>' + mydata_sections.get('りれき') + '</span>');
 }
 
 // Translate search form
@@ -136,6 +144,7 @@ if (domNodeExists('[name=webtool_search_form]')) {
 domAddClassIfExists('title', '', 'hasSearchParam');
 domAddClassIfExists('h2.subtitle.bl', '', 'hasSearchParam');
 domAddClassIfExists('h2.subtitle.pp02', '', 'hasSearchParam');
+domAddClassIfExists('h2.subtitle.gr', '', 'hasSearchParam');
 domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, 'Searching for: $1');
 
 // Genre search
@@ -222,6 +231,13 @@ if (domNodeExists('span#paging_root')) {
     domReplaceTextUsingMapIfExists('.hasSearchParam, .item_category a', featured_categories);
     domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
         if (featured_categories.has(p1)) return featured_categories.get(p1) + ' |';
+        return p1 + ' |';
+    });
+
+    // Translate "My Data" sections
+    domReplaceTextUsingMapIfExists('.hasSearchParam', mydata_sections);
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
+        if (mydata_sections.has(p1)) return mydata_sections.get(p1) + ' |';
         return p1 + ' |';
     });
 }

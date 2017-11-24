@@ -52,6 +52,8 @@ a[href="/kyokunavi/ps3/session/logout"] {
 a[href="/kyokunavi/ps3/session/logout"] > span {
     display: inline-block;
     background: linear-gradient(to bottom, #FFFFFF, #F4F4F4);
+    margin-left: 40px;
+    width: 110px;
 }
 
 /* Big 5 icons (How to, Search, Categories, My Data, Queue) */
