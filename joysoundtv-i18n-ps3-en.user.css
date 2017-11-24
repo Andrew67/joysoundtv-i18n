@@ -103,3 +103,11 @@ ul.search li > span > a:hover {
 .result_btn .regist_m .mysong.cancel::before, .result_btn .regist_m .myartist.cancel::before {
     content: "Delete ";
 }
+
+/* Artist search results have Save/Delete to "My Artists" buttons (dynamically updating text) */
+.item_artist .favorite_edit_process.regist a::before {
+    content: "Save Artist &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+}
+.item_artist .favorite_edit_process.cancel a::before {
+    content: "Delete Artist &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+}

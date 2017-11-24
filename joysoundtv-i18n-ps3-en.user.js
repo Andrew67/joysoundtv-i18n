@@ -142,11 +142,10 @@ if (domNodeExists('span#paging_root')) {
     domReplaceTextIfExists('.reserve_m a', '採点オフ', 'Off');
 
     domReplaceTextIfExists('.result_btn dt', '●登録', '● My Data');
+    // CSS is used to provide the "Save/Delete" text
     domReplaceTextIfExists('.result_btn .regist_m .mysong', '', 'song');
     domReplaceTextIfExists('.result_btn .regist_m .myartist', '', 'artist');
 
     domReplaceTextIfExists('.result_btn dt', '●アーティスト', '● Artist');
     domReplaceTextIfExists('.result_btn .regist_m.m_list a', '', 'See more songs');
-
-    // TODO: Artist search has a "Save to 'My Artists'" button
 }
