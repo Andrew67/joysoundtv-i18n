@@ -98,6 +98,12 @@ domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, functi
 
 // Translate search results page items (by detecting the pager)
 if (domNodeExists('span#paging_root')) {
+    // Song ID search
+    // TODO: Use URLSearchParams to parse out search parameter from URL, as the song ID search does not show it at all
+    domAddClassIfExists('title', '選曲番号検索', 'hasSearchParam');
+    domAddClassIfExists('h2.subtitle.bl', '選曲番号検索', 'hasSearchParam');
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search');
+
     // Navigation
     domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /^1件\((.*)件目表示\)/, '1 result');
     domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /(.*)件\((.*)件目表示\)/, '$1 results (displaying $2)');
@@ -141,4 +147,6 @@ if (domNodeExists('span#paging_root')) {
 
     domReplaceTextIfExists('.result_btn dt', '●アーティスト', '● Artist');
     domReplaceTextIfExists('.result_btn .regist_m.m_list a', '', 'See more songs');
+
+    // TODO: Artist search has a "Save to 'My Artists'" button
 }
