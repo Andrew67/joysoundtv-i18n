@@ -45,7 +45,7 @@ function domReplaceTextIfExists (selector, containsText, newText) {
 function domReplaceTextUsingMapIfExists (selector, map) {
     let nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
-        if (map.has(node.innerText)) {
+        if (map.has(node.innerText.trim())) {
             node.innerText = map.get(node.innerText);
         }
     }

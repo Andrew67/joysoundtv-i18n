@@ -17,17 +17,6 @@
  */
 "use strict";
 
-// Translate global strings
-domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/,
-    "※ Unauthorized reproduction of this website's content is forbidden.");
-domReplaceTextIfExists('a', 'はい', 'Yes');
-domReplaceTextIfExists('a', 'いいえ', 'No');
-domReplaceTextIfExists('ul#gnav > li.g01 > a', '', 'How-to');
-domReplaceTextIfExists('ul#gnav > li.g02 > a', '', 'Categories');
-domReplaceTextIfExists('ul#gnav > li.g03 > a', '', 'My Data');
-domReplaceTextIfExists('ul#gnav > li.g04 > a', '', 'Queue');
-domReplaceTextIfExists('ul#gnav > li.g05 > a', '', 'Search');
-
 /** Genre translations (used for drop-down and search results page) */
 const genres = new Map([
     ['ジャンルを選ぶ', 'Select a genre'],
@@ -53,6 +42,26 @@ const genres = new Map([
     ['民謡/演歌/歌謡曲', "Folk (Min'you / Enka / Kayoukyoku)"]
 ]);
 
+/** Category translations (used for main page buttons, big button drop-down and results pages) */
+const categories = new Map([
+    ['総合ランキング', 'Overall Rank'],
+    ['ジャンル別ランキング', 'Rankings by Genre'],
+    ['新着曲', 'New Arrivals'],
+    ['特集', 'Featured']
+]);
+
+// Translate global strings
+domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/,
+    "※ Unauthorized reproduction of this website's content is forbidden.");
+domReplaceTextIfExists('a', 'はい', 'Yes');
+domReplaceTextIfExists('a', 'いいえ', 'No');
+domReplaceTextIfExists('ul#gnav > li.g01 > a', '', 'How-to');
+domReplaceTextIfExists('ul#gnav > li.g02 > a', '', 'Categories');
+domReplaceTextUsingMapIfExists('ul#gnav > li.g02 > ul.sub a', categories);
+domReplaceTextIfExists('ul#gnav > li.g03 > a', '', 'My Data');
+domReplaceTextIfExists('ul#gnav > li.g04 > a', '', 'Queue');
+domReplaceTextIfExists('ul#gnav > li.g05 > a', '', 'Search');
+
 // Translate the login page (by detecting the login header)
 if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextInHtmlIfExists('title', 'ログイン', 'Log In');
@@ -76,10 +85,10 @@ if (domNodeExists('h2.subtitle.pp')) {
     domReplaceTextIfExists('h2.subtitle.bl', '', 'Search Menu');
 
     domReplaceTextIfExists('h2.subtitle.pp', '', 'Categories');
-    domReplaceTextInHtmlIfExists('ul.info li.i01 a', /.*/, '<span>Overall Rank</span>');
-    domReplaceTextInHtmlIfExists('ul.info li.i02 a', /.*/, '<span>New Arrivals</span>');
-    domReplaceTextInHtmlIfExists('ul.info li.i03 a', /.*/, '<span>Rankings by Genre</span>');
-    domReplaceTextInHtmlIfExists('ul.info li.i04 a', /.*/, '<span>Featured</span>');
+    domReplaceTextInHtmlIfExists('ul.info li.i01 a', /.*/, '<span>' + categories.get('総合ランキング') + '</span>');
+    domReplaceTextInHtmlIfExists('ul.info li.i02 a', /.*/, '<span>' + categories.get('新着曲') + '</span>');
+    domReplaceTextInHtmlIfExists('ul.info li.i03 a', /.*/, '<span>' + categories.get('ジャンル別ランキング') + '</span>');
+    domReplaceTextInHtmlIfExists('ul.info li.i04 a', /.*/, '<span>' + categories.get('特集') + '</span>');
 
     domReplaceTextIfExists('h2.subtitle.gr', '', 'My Data');
     domReplaceTextInHtmlIfExists('ul.mydata li.m01 a', /.*/, '<span>My Songs</span>');
@@ -101,13 +110,12 @@ if (domNodeExists('[name=webtool_search_form]')) {
 
 // Translate search query (can appear in main page as well as search results page)
 // TODO: Use URLSearchParams to parse out search parameter from URL, as the page one cuts off after 10 characters
-domAddClassIfExists('title', 'で検索中', 'hasSearchParam');
-domAddClassIfExists('h2.subtitle.bl', 'で検索中', 'hasSearchParam');
+domAddClassIfExists('title', '', 'hasSearchParam');
+domAddClassIfExists('h2.subtitle.bl', '', 'hasSearchParam');
+domAddClassIfExists('h2.subtitle.pp02', '', 'hasSearchParam');
 domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, 'Searching for: $1');
 
 // Genre search
-domAddClassIfExists('title', 'を検索中', 'hasSearchParam');
-domAddClassIfExists('h2.subtitle.bl', 'を検索中', 'hasSearchParam');
 domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, function (match, p1) {
     if (genres.has(p1)) return 'Searching for genre: ' + genres.get(p1);
     return 'Searching for: ' + p1;
@@ -165,4 +173,13 @@ if (domNodeExists('span#paging_root')) {
 
     domReplaceTextIfExists('.result_btn dt', '●アーティスト', '● Artist');
     domReplaceTextIfExists('.result_btn .regist_m.m_list a', '', 'See more songs');
+
+    // Translate genres when showing the "Rankings by Genre" pages
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /ジャンル別ランキング/, categories.get('ジャンル別ランキング'));
+    domReplaceTextUsingMapIfExists('.hasSearchParam', genres);
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
+        if (genres.has(p1)) return genres.get(p1) + ' |';
+        return p1 + ' |';
+    });
+    domReplaceTextUsingMapIfExists('.item_category a', genres);
 }
