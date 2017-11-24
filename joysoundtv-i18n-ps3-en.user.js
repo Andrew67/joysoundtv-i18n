@@ -74,7 +74,13 @@ if (domNodeExists('h2.subtitle.login')) {
 // Translate main menu page (by detecting the categories header)
 if (domNodeExists('h2.subtitle.pp')) {
     domReplaceTextIfExists('h2.subtitle.bl', '', 'Search Menu');
+
     domReplaceTextIfExists('h2.subtitle.pp', '', 'Categories');
+    domReplaceTextInHtmlIfExists('ul.info li.i01 a', /.*/, '<span>Overall Rank</span>');
+    domReplaceTextInHtmlIfExists('ul.info li.i02 a', /.*/, '<span>New Arrivals</span>');
+    domReplaceTextInHtmlIfExists('ul.info li.i03 a', /.*/, '<span>Rankings by Genre</span>');
+    domReplaceTextInHtmlIfExists('ul.info li.i04 a', /.*/, '<span>Featured</span>');
+
     domReplaceTextIfExists('h2.subtitle.gr', '', 'My Data');
 }
 

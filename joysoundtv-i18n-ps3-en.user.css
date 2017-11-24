@@ -49,7 +49,8 @@ ul#gnav > li > a {
 
 /* Search box */
 .search_box > .search_btn > a {
-    background: url('https://vt.joysound.tv/kyokunavi_site/images/btn_search.png') repeat-x -15px top;
+    background-repeat: repeat-x;
+    background-position-x: -15px;
     text-decoration: none;
     line-height: 40px;
     font-size: 24px;
@@ -104,6 +105,34 @@ ul.search li > span > a:hover {
 #search_type_karaoke_id a {
     margin-left: 86px;
     width: 100px;
+}
+
+ul.info li.i01 > a > span {
+    margin-left: 45px;
+    width: 165px;
+}
+
+ul.info li.i02 > a > span {
+    margin-left: 44px;
+}
+
+ul.info li.i02 > a {
+    background-repeat: repeat-x;
+    background-position-x: -44px;
+}
+
+ul.info li.i03 > a > span {
+    margin-left: 39px;
+    width: 233px;
+}
+
+ul.info li.i04 > a > span {
+    margin-left: 68px;
+}
+
+ul.info li.i04 > a {
+    background-repeat: repeat-x;
+    background-position-x: -32px;
 }
 
 /* Search result "My Data" Save/Delete buttons (dynamically updating) */
