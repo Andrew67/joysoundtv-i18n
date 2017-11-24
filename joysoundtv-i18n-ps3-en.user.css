@@ -37,6 +37,16 @@
     height: 50px;
 }
 
+/* Big 5 icons (How to, Search, Categories, My Data, Queue) */
+/* TODO: Proper text replacement */
+ul#gnav > li {
+    text-indent: 0;
+}
+ul#gnav > li > a {
+    text-decoration: none;
+    text-align: center;
+}
+
 /* Search box */
 .search_box > .search_btn > a {
     background: url('https://vt.joysound.tv/kyokunavi_site/images/btn_search.png') repeat-x -15px top;

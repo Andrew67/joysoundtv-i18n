@@ -18,9 +18,15 @@
 "use strict";
 
 // Translate global strings
-domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/, "※ Unauthorized reproduction of this website's content is forbidden.");
+domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/,
+    "※ Unauthorized reproduction of this website's content is forbidden.");
 domReplaceTextIfExists('a', 'はい', 'Yes');
 domReplaceTextIfExists('a', 'いいえ', 'No');
+domReplaceTextIfExists('ul#gnav > li.g01 > a', '', 'How-to');
+domReplaceTextIfExists('ul#gnav > li.g02 > a', '', 'Categories');
+domReplaceTextIfExists('ul#gnav > li.g03 > a', '', 'My Data');
+domReplaceTextIfExists('ul#gnav > li.g04 > a', '', 'Queue');
+domReplaceTextIfExists('ul#gnav > li.g05 > a', '', 'Search');
 
 /** Genre translations (used for drop-down and search results page) */
 const genres = new Map([
@@ -58,8 +64,10 @@ if (domNodeExists('h2.subtitle.login')) {
     domAddClassIfExists('p.btn', '', 'loginBtn');
     domReplaceTextInHtmlIfExists('.loginBtn > a', /.*/, '<span>Log In</span>');
 
-    domReplaceTextInHtmlIfExists('p.message', /.*パスワードが間違っています.*/, 'The Password is incorrect.<br>(QR Codes are valid from one hour after they are issued. Please enter a reissued QR Code or Password.)');
-    domReplaceTextInHtmlIfExists('p.message', /.*有効期限が切れています.*/, 'The QR Code or Password you have entered is expired.<br>Please enter a reissued QR Code or Password.');
+    domReplaceTextInHtmlIfExists('p.message', /.*パスワードが間違っています.*/,
+        'The Password is incorrect.<br>(QR Codes are valid from one hour after they are issued. Please enter a reissued QR Code or Password.)');
+    domReplaceTextInHtmlIfExists('p.message', /.*有効期限が切れています.*/,
+        'The QR Code or Password you have entered is expired.<br>Please enter a reissued QR Code or Password.');
     domReplaceTextIfExists('p.message', 'パスワードを入力してください。', 'Please enter a Password.');
 }
 
