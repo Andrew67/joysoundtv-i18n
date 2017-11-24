@@ -83,6 +83,7 @@ domReplaceTextUsingMapIfExists('ul#gnav > li.g02 > ul.sub a', categories);
 domReplaceTextIfExists('ul#gnav > li.g03 > a', '', 'My Data');
 domReplaceTextIfExists('ul#gnav > li.g04 > a', '', 'Queue');
 domReplaceTextIfExists('ul#gnav > li.g05 > a', '', 'Search');
+domReplaceTextInHtmlIfExists('a[href="/kyokunavi/ps3/session/logout"]', /.*/, '<span>Log Out</span>');
 
 // Translate the login page (by detecting the login header)
 if (domNodeExists('h2.subtitle.login')) {

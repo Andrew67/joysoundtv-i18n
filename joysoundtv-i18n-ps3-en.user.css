@@ -37,6 +37,23 @@
     height: 50px;
 }
 
+/* Logout button */
+a[href="/kyokunavi/ps3/session/logout"] {
+    display: block;
+    background: url("https://vt.joysound.tv/kyokunavi_site/images/btn_logout.png") no-repeat left top;
+    width: 160px;
+    height: 50px;
+    text-decoration: none;
+    font-size: 24px;
+    line-height: 50px;
+    font-weight: bold;
+    color: #686868;
+}
+a[href="/kyokunavi/ps3/session/logout"] > span {
+    display: inline-block;
+    background: linear-gradient(to bottom, #FFFFFF, #F4F4F4);
+}
+
 /* Big 5 icons (How to, Search, Categories, My Data, Queue) */
 /* TODO: Proper text replacement */
 ul#gnav > li {
