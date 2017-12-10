@@ -140,12 +140,11 @@ if (domNodeExists('[name=webtool_search_form]')) {
 }
 
 // Translate search query (can appear in main page as well as search results page)
-// TODO: Use URLSearchParams to parse out search parameter from URL, as the page one cuts off after 10 characters
-domAddClassIfExists('title', '', 'hasSearchParam');
-domAddClassIfExists('h2.subtitle.bl', '', 'hasSearchParam');
-domAddClassIfExists('h2.subtitle.pp02', '', 'hasSearchParam');
-domAddClassIfExists('h2.subtitle.gr', '', 'hasSearchParam');
-domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, 'Searching for: $1');
+domAddClassIfExists('title, h2.subtitle.bl, h2.subtitle.pp02, h2.subtitle.gr', '', 'hasSearchParam');
+const iw = new URLSearchParams(document.location.search.substring(1)).get('iw');
+domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, function (match, p1) {
+    return 'Searching for: ' + (htmlEntities(iw) || p1);
+});
 
 // Genre search
 domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, function (match, p1) {
@@ -156,10 +155,8 @@ domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, functi
 // Translate search results page items (by detecting the pager)
 if (domNodeExists('span#paging_root')) {
     // Song ID search
-    // TODO: Use URLSearchParams to parse out search parameter from URL, as the song ID search does not show it at all
-    domAddClassIfExists('title', '選曲番号検索', 'hasSearchParam');
-    domAddClassIfExists('h2.subtitle.bl', '選曲番号検索', 'hasSearchParam');
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search');
+    domReplaceTextInHtmlIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search' +
+        (iw ? ': ' + htmlEntities(iw) : ''));
 
     // Navigation
     domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /^1件\((.*)件目表示\)/, '1 result');
