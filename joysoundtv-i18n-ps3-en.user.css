@@ -84,7 +84,7 @@ ul#gnav > li > a {
     height: 40px;
 }
 
-/* Main page buttons (Name, Artist, New Arrivals, My Songs) */
+/* Main page buttons (Title, Artist, New Arrivals, My Songs) */
 ul.search li, ul.info li, ul.mydata li {
     text-indent: 0;
 }
@@ -107,32 +107,43 @@ ul.search li > span > a:hover {
 }
 
 #search_type_song a {
-    margin-left: 109px;
-    width: 60px;
+    margin-left: 99px;
+    width: 137px;
+}
+
+#search_type_song span {
+    background-repeat: repeat-x;
+    background-position-x: -10px;
 }
 
 #search_type_artist a {
     margin-left: 97px;
-    width: 85px;
+    width: 139px;
 }
 
 #search_type_keyword a {
     margin-left: 77px;
-    width: 110px;
+    width: 159px;
 }
 
 #search_type_karaoke_id a {
-    margin-left: 86px;
-    width: 100px;
+    margin-left: 76px;
+    width: 160px;
+}
+
+#search_type_karaoke_id span {
+    background-repeat: repeat-x;
+    background-position-x: -10px;
 }
 
 ul.info li.i01 > a > span {
     margin-left: 45px;
-    width: 165px;
+    width: 175px;
 }
 
 ul.info li.i02 > a > span {
     margin-left: 44px;
+    width: 176px;
 }
 ul.info li.i02 > a {
     background-repeat: repeat-x;
@@ -141,11 +152,12 @@ ul.info li.i02 > a {
 
 ul.info li.i03 > a > span {
     margin-left: 39px;
-    width: 233px;
+    width: 243px;
 }
 
 ul.info li.i04 > a > span {
     margin-left: 68px;
+    width: 152px;
 }
 ul.info li.i04 > a {
     background-repeat: repeat-x;
@@ -154,6 +166,7 @@ ul.info li.i04 > a {
 
 ul.mydata li.m01 > a > span {
     margin-left: 119px;
+    width: 196px;
 }
 ul.mydata li.m01 > a {
     background-repeat: repeat-x;
@@ -162,7 +175,7 @@ ul.mydata li.m01 > a {
 
 ul.mydata li.m02 > a > span {
     margin-left: 110px;
-    width: 175px;
+    width: 205px;
 }
 ul.mydata li.m02 > a {
     background-repeat: repeat-x;
@@ -171,6 +184,7 @@ ul.mydata li.m02 > a {
 
 ul.mydata li.m03 > a > span {
     margin-left: 125px;
+    width: 190px;
 }
 ul.mydata li.m03 > a {
     background-repeat: repeat-x;
