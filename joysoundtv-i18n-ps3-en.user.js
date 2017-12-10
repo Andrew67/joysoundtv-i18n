@@ -84,6 +84,7 @@ domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文
     "※ Unauthorized reproduction of this website's content is forbidden.");
 domReplaceTextIfExists('a', 'はい', 'Yes');
 domReplaceTextIfExists('a', 'いいえ', 'No');
+domReplaceTextIfExists('button', '閉じる', 'OK');
 domReplaceTextIfExists('ul#gnav > li.g01 > a', '', 'How-to');
 domReplaceTextIfExists('ul#gnav > li.g02 > a', '', 'Categories');
 domReplaceTextUsingMapIfExists('ul#gnav > li.g02 > ul.sub a', categories);
@@ -173,9 +174,11 @@ if (domNodeExists('span#paging_root, ul.reserve_list') ||
     domReplaceTextInHtmlIfExists('title', '予約一覧', 'Queue');
     domReplaceTextIfExists('h2.subtitle.ye', '予約一覧', 'Queue');
     domReplaceTextIfExists('.reserve_list a', '選択削除', 'Delete selected');
-    domReplaceTextIfExists('#schedule_selectdel_confirm h2', '', 'Delete selected songs from the queue?');
+    domReplaceTextIfExists('#schedule_selectdel_confirm h2:first-child', '', 'Delete selected songs from the queue?');
+    domReplaceTextIfExists('#schedule_selectdel_confirm h2.p_yes', '', 'The selected songs have been successfully erased.');
     domReplaceTextIfExists('.reserve_list a', 'すべて削除', 'Delete all');
-    domReplaceTextIfExists('#schedule_del_confirm h2', '', 'Delete all songs from the queue?');
+    domReplaceTextIfExists('#schedule_del_confirm h2:first-child', '', 'Delete all songs from the queue?');
+    domReplaceTextIfExists('#schedule_del_confirm h2.p_yes', '', 'The queue has been successfully erased.');
 
     // Song action items
     domReplaceTextIfExists('.data th', '歌い出し', 'First line');
