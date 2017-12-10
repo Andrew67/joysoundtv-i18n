@@ -152,8 +152,9 @@ domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, functi
     return 'Searching for: ' + p1;
 });
 
-// Translate search results page items (by detecting the pager)
-if (domNodeExists('span#paging_root')) {
+// Translate search results page items (by detecting the pager / my data header (with no category header) / queue delete buttons)
+if (domNodeExists('span#paging_root, ul.reserve_list') ||
+    (domNodeExists('h2.subtitle.gr') && !domNodeExists('h2.subtitle.pp'))) {
     // Song ID search
     domReplaceTextInHtmlIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search' +
         (iw ? ': ' + htmlEntities(iw) : ''));
@@ -237,4 +238,5 @@ if (domNodeExists('span#paging_root')) {
         if (mydata_sections.has(p1)) return mydata_sections.get(p1) + ' |';
         return p1 + ' |';
     });
+    domReplaceTextInHtmlIfExists('.inner', /登録されていません。/, 'No entries.');
 }
