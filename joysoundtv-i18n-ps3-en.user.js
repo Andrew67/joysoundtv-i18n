@@ -125,15 +125,15 @@ if (domNodeExists('h2.subtitle.login')) {
 
 // Translate main menu page (by detecting the categories header)
 if (domNodeExists('h2.subtitle.pp')) {
-    domReplaceTextIfExists('h2.subtitle.bl', '', 'Search Menu');
+    domReplaceTextIfExists('h2.subtitle.bl', /.*/, 'Search Menu');
 
-    domReplaceTextIfExists('h2.subtitle.pp', '', 'Categories');
+    domReplaceTextIfExists('h2.subtitle.pp', /.*/, 'Categories');
     domReplaceWithChildTagIfExists('ul.info li.i01 a', DOM_SPAN, categories.get('総合ランキング'));
     domReplaceWithChildTagIfExists('ul.info li.i02 a', DOM_SPAN, categories.get('新着曲'));
     domReplaceWithChildTagIfExists('ul.info li.i03 a', DOM_SPAN, categories.get('ジャンル別ランキング'));
     domReplaceWithChildTagIfExists('ul.info li.i04 a', DOM_SPAN, categories.get('特集'));
 
-    domReplaceTextIfExists('h2.subtitle.gr', '', 'My Data');
+    domReplaceTextIfExists('h2.subtitle.gr', /.*/, 'My Data');
     domReplaceWithChildTagIfExists('ul.mydata li.m01 a', DOM_SPAN, mydata_sections.get('マイうた'));
     domReplaceWithChildTagIfExists('ul.mydata li.m02 a', DOM_SPAN, mydata_sections.get('マイアーティスト'));
     domReplaceWithChildTagIfExists('ul.mydata li.m03 a', DOM_SPAN, mydata_sections.get('りれき'));
@@ -146,8 +146,8 @@ if (domNodeExists('[name=webtool_search_form]')) {
     domReplaceWithChildTagIfExists('#search_type_artist span', DOM_A, 'Artist');
     domReplaceWithChildTagIfExists('#search_type_keyword span', DOM_A, 'Keyword');
     domReplaceWithChildTagIfExists('#search_type_karaoke_id span', DOM_A, 'Song ID');
-    domReplaceTextIfExists('#match_type_partial_label', '', 'Contains');
-    domReplaceTextIfExists('#match_type_head_label', '', 'Starts with');
+    domReplaceTextIfExists('#match_type_partial_label', /.*/, 'Contains');
+    domReplaceTextIfExists('#match_type_head_label', /.*/, 'Starts with');
     domReplaceWithChildTagIfExists('.search_btn > a', DOM_SPAN, 'Search');
 }
 
@@ -164,7 +164,8 @@ domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, functi
     return 'Searching for: ' + p1;
 });
 
-// Translate search results page items (by detecting the pager / my data header (with no category header) / queue delete buttons)
+// Translate search results page items
+// (by detecting the pager / my data header (with no category header) / queue delete buttons)
 if (domNodeExists('span#paging_root, ul.reserve_list') ||
     (domNodeExists('h2.subtitle.gr') && !domNodeExists('h2.subtitle.pp'))) {
     // Song ID search
@@ -185,39 +186,41 @@ if (domNodeExists('span#paging_root, ul.reserve_list') ||
     domReplaceTextInHtmlIfExists('title', '予約一覧', 'Queue');
     domReplaceTextIfExists('h2.subtitle.ye', '予約一覧', 'Queue');
     domReplaceTextIfExists('.reserve_list a', '選択削除', 'Delete selected');
-    domReplaceTextIfExists('#schedule_selectdel_confirm h2:first-child', '', 'Delete selected songs from the queue?');
-    domReplaceTextIfExists('#schedule_selectdel_confirm h2.p_yes', '', 'The selected songs have been successfully erased.');
+    domReplaceTextIfExists('#schedule_selectdel_confirm h2:first-child', /.*/, 'Delete selected songs from the queue?');
+    domReplaceTextIfExists('#schedule_selectdel_confirm h2.p_yes', /.*/,
+        'The selected songs have been successfully deleted.');
     domReplaceTextIfExists('.reserve_list a', 'すべて削除', 'Delete all');
-    domReplaceTextIfExists('#schedule_del_confirm h2:first-child', '', 'Delete all songs from the queue?');
-    domReplaceTextIfExists('#schedule_del_confirm h2.p_yes', '', 'The queue has been successfully erased.');
+    domReplaceTextIfExists('#schedule_del_confirm h2:first-child', /.*/, 'Delete all songs from the queue?');
+    domReplaceTextIfExists('#schedule_del_confirm h2.p_yes', /.*/, 'The queue has been successfully deleted.');
 
     // Song action items
     domReplaceTextIfExists('.data th', '歌い出し', 'First line');
     domReplaceTextIfExists('.data th', 'タイアップ', 'Tie-in');
 
-    domReplaceTextIfExists('.result_btn.keyset dt', '', '● Reserve');
+    domReplaceTextIfExists('.result_btn.keyset dt', /.*/, '● Reserve');
 
     domReplaceTextIfExists('.reserve_m.key .key_t', 'キー設定', 'Key');
-    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="0"]', '', '0 (Original)');
-    domReplaceTextIfExists('.reserve_m.key .set_originalkey_selectbox_process > a', '', 'Reset');
+    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="0"]', /.*/, '0 (Original)');
+    domReplaceTextIfExists('.reserve_m.key .set_originalkey_selectbox_process > a', /.*/, 'Reset');
 
     domReplaceTextIfExists('.reserve_m.key .key_t', '曲タイプ', 'Video');
-    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="sound"]', '', 'Off');
-    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="movie"]', '', 'On');
+    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="sound"]', /.*/, 'Off');
+    domReplaceTextIfExists('.reserve_m.key .key_btn option[value="movie"]', /.*/, 'On');
 
-    domReplaceTextIfExists('.result_btn dt:first-child:empty', '', 'Select a scoring/grading option below to add song to queue:');
+    domReplaceTextIfExists('.result_btn dt:first-child:empty', '',
+        'Select a scoring/grading option below to add song to queue:');
     domReplaceTextIfExists('.reserve_m a', '全国採点', 'Ranking');
     domReplaceTextIfExists('.reserve_m a', '分析採点', 'Analysis');
     domReplaceTextIfExists('.reserve_m a', '採点オフ', 'Off');
-    domReplaceTextIfExists('#schedule_add_sub h2:first-child', '', 'Reservation complete.');
+    domReplaceTextIfExists('#schedule_add_sub h2:first-child', /.*/, 'Reservation complete.');
 
     domReplaceTextIfExists('.result_btn dt', '●登録', '● My Data');
     // CSS is used to provide the "Save/Delete" text
-    domReplaceTextIfExists('.result_btn .regist_m .mysong', '', 'song');
-    domReplaceTextIfExists('.result_btn .regist_m .myartist', '', 'artist');
+    domReplaceTextIfExists('.result_btn .regist_m .mysong', /.*/, 'song');
+    domReplaceTextIfExists('.result_btn .regist_m .myartist', /.*/, 'artist');
 
     domReplaceTextIfExists('.result_btn dt', '●アーティスト', '● Artist');
-    domReplaceTextIfExists('.result_btn .regist_m.m_list a', '', 'See more songs');
+    domReplaceTextIfExists('.result_btn .regist_m.m_list a', /.*/, 'See more songs');
 
     // Translate category types and genres when showing the category pages
     domReplaceTextUsingMapIfExists('.hasSearchParam', categories);
