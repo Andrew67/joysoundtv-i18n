@@ -126,6 +126,11 @@ if (domNodeExists('h2.subtitle.login')) {
 // Translate main menu page (by detecting the categories header)
 if (domNodeExists('h2.subtitle.pp')) {
     domReplaceTextIfExists('h2.subtitle.bl', /.*/, 'Search Menu');
+    domReplaceTextIfExists('div.error', '選曲番号を正しく入力してください。', 'Please enter a valid Song ID.');
+    domReplaceTextIfExists('div.error', '検索条件に該当する楽曲が見つかりませんでした。',
+        'Unable to find songs that match the given search criteria.');
+    domReplaceTextIfExists('div.error', '検索のヒント：ひらがなでも検索することができます。',
+        'Search tip: Searching using hiragana (ひらがな) is also possible.');
 
     domReplaceTextIfExists('h2.subtitle.pp', /.*/, 'Categories');
     domReplaceWithChildTagIfExists('ul.info li.i01 a', DOM_SPAN, categories.get('総合ランキング'));
@@ -164,13 +169,13 @@ domReplaceTextIfExists('.hasSearchParam', /「(.*)」を検索中/, function (ma
     return 'Searching for: ' + p1;
 });
 
+// Song ID search
+domReplaceTextIfExists('.hasSearchParam', '選曲番号検索', 'Song ID Search' + (iw ? ': ' + iw : ''));
+
 // Translate search results page items
 // (by detecting the pager / my data header (with no category header) / queue delete buttons)
 if (domNodeExists('span#paging_root, ul.reserve_list') ||
     (domNodeExists('h2.subtitle.gr') && !domNodeExists('h2.subtitle.pp'))) {
-    // Song ID search
-    domReplaceTextIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search' + (iw ? ': ' + iw : ''));
-
     // Navigation
     domReplaceTextIfExists('#paging_root > p.mb10.clear', /^1件\((.*)件目表示\)/, '1 result');
     domReplaceTextIfExists('#paging_root > p.mb10.clear', /(.*)件\((.*)件目表示\)/, '$1 results (displaying $2)');
