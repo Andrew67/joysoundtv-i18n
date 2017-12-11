@@ -155,7 +155,7 @@ if (domNodeExists('[name=webtool_search_form]')) {
 domAddClassIfExists('title, h2.subtitle.bl, h2.subtitle.pp02, h2.subtitle.gr', '', 'hasSearchParam');
 const iw = new URLSearchParams(document.location.search.substring(1)).get('iw');
 domReplaceTextIfExists('.hasSearchParam', /「(.*)」で検索中/, function (match, p1) {
-    return 'Searching for: ' + (htmlEntities(iw) || p1);
+    return 'Searching for: ' + (iw || p1);
 });
 
 // Genre search
@@ -169,7 +169,7 @@ domReplaceTextIfExists('.hasSearchParam', /「(.*)」を検索中/, function (ma
 if (domNodeExists('span#paging_root, ul.reserve_list') ||
     (domNodeExists('h2.subtitle.gr') && !domNodeExists('h2.subtitle.pp'))) {
     // Song ID search
-    domReplaceTextIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search' + (iw ? ': ' + htmlEntities(iw) : ''));
+    domReplaceTextIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search' + (iw ? ': ' + iw : ''));
 
     // Navigation
     domReplaceTextIfExists('#paging_root > p.mb10.clear', /^1件\((.*)件目表示\)/, '1 result');

@@ -99,13 +99,3 @@ function domAddClassIfExists (selector, containsText, className) {
         }
     }
 }
-
-/**
- * Escapes key HTML entities in the given string.
- * @param unescapedString
- * @returns string
- */
-function htmlEntities (unescapedString) {
-    if (unescapedString) return unescapedString.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-    else return '';
-}
