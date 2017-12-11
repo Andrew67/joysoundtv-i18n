@@ -85,13 +85,13 @@ domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文
 domReplaceTextIfExists('a', 'はい', 'Yes');
 domReplaceTextIfExists('a', 'いいえ', 'No');
 domReplaceTextIfExists('button', '閉じる', 'OK');
-domReplaceTextIfExists('ul#gnav > li.g01 > a', '', 'How-to');
-domReplaceTextIfExists('ul#gnav > li.g02 > a', '', 'Categories');
+domReplaceTextInHtmlIfExists('ul#gnav > li.g01 > a', /.*/, '<span>How-to</span>');
+domReplaceTextInHtmlIfExists('ul#gnav > li.g02 > a', /.*/, '<span>Categories</span>');
 domReplaceTextUsingMapIfExists('ul#gnav > li.g02 > ul.sub a', categories);
-domReplaceTextIfExists('ul#gnav > li.g03 > a', '', 'My Data');
+domReplaceTextInHtmlIfExists('ul#gnav > li.g03 > a', /.*/, '<span>My Data</span>');
 domReplaceTextUsingMapIfExists('ul#gnav > li.g03 > ul.sub a', mydata_sections);
-domReplaceTextIfExists('ul#gnav > li.g04 > a', '', 'Queue');
-domReplaceTextIfExists('ul#gnav > li.g05 > a', '', 'Search');
+domReplaceTextInHtmlIfExists('ul#gnav > li.g04 > a', /.*/, '<span>Queue</span>');
+domReplaceTextInHtmlIfExists('ul#gnav > li.g05 > a', /.*/, '<span>Search</span>');
 domReplaceTextInHtmlIfExists('a[href="/kyokunavi/ps3/session/logout"]', /.*/, '<span>Log Out</span>');
 
 // Translate the login page (by detecting the login header)

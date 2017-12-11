@@ -57,13 +57,33 @@ a[href="/kyokunavi/ps3/session/logout"] > span {
 }
 
 /* Big 5 icons (How to, Search, Categories, My Data, Queue) */
-/* TODO: Proper text replacement */
 ul#gnav > li {
     text-indent: 0;
 }
 ul#gnav > li > a {
     text-decoration: none;
+    text-transform: uppercase;
     text-align: center;
+    font-size: 18px;
+    font-weight: bolder;
+}
+ul#gnav > li > a > span {
+    margin-top: 87px;
+    display: inline-block;
+    background: linear-gradient(to bottom, #ffffff, #d2d2d2);
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+}
+ul#gnav > li.g03 > a > span {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+ul#gnav > li.g04 > a > span {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /* Search box */
