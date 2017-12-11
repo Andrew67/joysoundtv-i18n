@@ -263,4 +263,5 @@ if (domNodeExists('span#paging_root, ul.reserve_list') ||
     domDoCallbackIfExists('.inner', '登録されていません。', function (el) {
         el.childNodes[el.childNodes.length - 1].textContent = 'No entries.';
     });
+    domReplaceTextIfExists('#favorite_edit_sub h2:first-child', /.*/, 'Changes to "My Data" successfully completed.');
 }
