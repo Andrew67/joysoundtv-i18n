@@ -96,8 +96,8 @@ domReplaceWithChildTagIfExists('a[href="/kyokunavi/ps3/session/logout"]', DOM_SP
 
 // Translate the login page (by detecting the login header)
 if (domNodeExists('h2.subtitle.login')) {
-    domReplaceTextInHtmlIfExists('title', 'ログイン', 'Log In');
-    domReplaceTextIfExists('h2.subtitle.login', '', 'Log In');
+    domReplaceTextIfExists('title', 'ログイン', 'Log In');
+    domReplaceTextIfExists('h2.subtitle.login', /.*/, 'Log In');
     domReplaceTextIfExists('h3.subtitle.gy', 'パスワード', 'Password (パスワード)');
     domReplaceTextIfExists('h3.subtitle.gy', 'かんたんログイン', 'Easy Login');
     domDoCallbackIfExists('p.mb30', 'ログイン状態を保持する', function (el) {
@@ -106,7 +106,7 @@ if (domNodeExists('h2.subtitle.login')) {
         newLabel.innerText = 'Stay logged in';
         el.replaceChild(newLabel, el.childNodes[1]);
     });
-    domReplaceTextIfExists('ul.kome > li', 'ログアウト', '※ Logging out will undo the "Stay logged in" option.');
+    domReplaceTextIfExists('ul.kome > li', /.*ログアウト.*/, '※ Logging out will undo the "Stay logged in" option.');
     domAddClassIfExists('p.btn', '', 'loginBtn');
     domReplaceWithChildTagIfExists('.loginBtn > a', DOM_SPAN, 'Log In');
 

@@ -24,15 +24,17 @@ function domNodeExists (selector) {
 
 /**
  * Replaces the matching elements' innerText if they exist.
+ * Because innerText is used, any child DOM nodes are destroyed.
  * @param selector - Query selector.
- * @param containsText - Text to search for (does not need to be complete).
- * @param newText - Replacement text, which completely replaces the old innerText.
+ * @param oldText - Text to replace (in its entirety, or a regex). Empty string is full replacement.
+ * @param newText - Replacement text, which replaces oldText (can use regex matching).
  */
-function domReplaceTextIfExists (selector, containsText, newText) {
+function domReplaceTextIfExists (selector, oldText, newText) {
     const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
-        if (node.innerText.includes(containsText)) {
-            node.innerText = newText;
+        if ((typeof oldText === 'string' && node.innerText.includes(oldText)) ||
+            (oldText instanceof RegExp && node.innerText.match(oldText))) {
+            node.innerText = node.innerText.replace(oldText, newText);
         }
     }
 }
@@ -71,7 +73,7 @@ function domReplaceWithChildTagIfExists (selector, childTag, newText) {
 /**
  * Replaces the matching elements' innerHTML if they exist.
  * @param selector - Query selector.
- * @param oldText - Text to replace (in it's entirety, or a regex).
+ * @param oldText - Text to replace (in its entirety, or a regex).
  * @param newText - Replacement text, which replaces oldText (can use regex matching).
  */
 function domReplaceTextInHtmlIfExists (selector, oldText, newText) {
