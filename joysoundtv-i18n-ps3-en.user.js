@@ -190,10 +190,12 @@ if (domNodeExists('span#paging_root, ul.reserve_list') ||
     domReplaceTextIfExists('title', '予約一覧', 'Queue');
     domReplaceTextIfExists('h2.subtitle.ye', '予約一覧', 'Queue');
     domReplaceTextIfExists('.reserve_list a', '選択削除', 'Delete selected');
+    // TODO: Use MutationObserver to support dynamic text replacement for "Connecting..." and success/error messages
     domReplaceTextIfExists('#schedule_selectdel_confirm h2:first-child', /.*/, 'Delete selected songs from the queue?');
     domReplaceTextIfExists('#schedule_selectdel_confirm h2.p_yes', /.*/,
         'The selected songs have been successfully deleted.');
     domReplaceTextIfExists('.reserve_list a', 'すべて削除', 'Delete all');
+    // TODO: Use MutationObserver to support dynamic text replacement for "Connecting..." and success/error messages
     domReplaceTextIfExists('#schedule_del_confirm h2:first-child', /.*/, 'Delete all songs from the queue?');
     domReplaceTextIfExists('#schedule_del_confirm h2.p_yes', /.*/, 'The queue has been successfully deleted.');
 
@@ -216,6 +218,7 @@ if (domNodeExists('span#paging_root, ul.reserve_list') ||
     domReplaceTextIfExists('.reserve_m a', '全国採点', 'Ranking');
     domReplaceTextIfExists('.reserve_m a', '分析採点', 'Analysis');
     domReplaceTextIfExists('.reserve_m a', '採点オフ', 'Off');
+    // TODO: Use MutationObserver to support dynamic text replacement for "Connecting..." and success/error messages
     domReplaceTextIfExists('#schedule_add_sub h2:first-child', /.*/, 'Reservation complete.');
 
     domReplaceTextIfExists('.result_btn dt', '●登録', '● My Data');
@@ -263,5 +266,6 @@ if (domNodeExists('span#paging_root, ul.reserve_list') ||
     domDoCallbackIfExists('.inner', '登録されていません。', function (el) {
         el.childNodes[el.childNodes.length - 1].textContent = 'No entries.';
     });
+    // TODO: Use MutationObserver to support dynamic text replacement for "Connecting..." and success/error messages
     domReplaceTextIfExists('#favorite_edit_sub h2:first-child', /.*/, 'Changes to "My Data" successfully completed.');
 }
