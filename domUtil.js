@@ -31,8 +31,8 @@ function domNodeExists (selector) {
 function domReplaceTextIfExists (selector, containsText, newText) {
     const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
-        if (node.innerText.includes(containsText)) {
-            node.innerText = newText;
+        if (node.textContent.includes(containsText)) {
+            node.textContent = newText;
         }
     }
 }
@@ -45,8 +45,8 @@ function domReplaceTextIfExists (selector, containsText, newText) {
 function domReplaceTextUsingMapIfExists (selector, map) {
     const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
-        if (map.has(node.innerText.trim())) {
-            node.innerText = map.get(node.innerText);
+        if (map.has(node.textContent.trim())) {
+            node.textContent = map.get(node.textContent.trim());
         }
     }
 }
@@ -62,7 +62,7 @@ function domReplaceWithChildTagIfExists (selector, childTag, newText) {
     const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
         const newChildNode = document.createElement((childTag === DOM_A) ? 'a' : 'span');
-        newChildNode.innerText = newText;
+        newChildNode.textContent = newText;
         node.innerHTML = '';
         node.appendChild(newChildNode);
     }
@@ -93,7 +93,7 @@ function domReplaceTextInHtmlIfExists (selector, oldText, newText) {
 function domAddClassIfExists (selector, containsText, className) {
     const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
-        if (node.innerText.includes(containsText)) {
+        if (node.textContent.includes(containsText)) {
             node.classList.add(className);
         }
     }
