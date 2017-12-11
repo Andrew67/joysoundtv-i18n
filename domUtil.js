@@ -29,7 +29,7 @@ function domNodeExists (selector) {
  * @param newText - Replacement text, which completely replaces the old innerText
  */
 function domReplaceTextIfExists (selector, containsText, newText) {
-    let nodes = document.querySelectorAll(selector);
+    const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
         if (node.innerText.includes(containsText)) {
             node.innerText = newText;
@@ -43,7 +43,7 @@ function domReplaceTextIfExists (selector, containsText, newText) {
  * @param map - Map of original text (must match entirely) to new text mapping.
  */
 function domReplaceTextUsingMapIfExists (selector, map) {
-    let nodes = document.querySelectorAll(selector);
+    const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
         if (map.has(node.innerText.trim())) {
             node.innerText = map.get(node.innerText);
@@ -58,7 +58,7 @@ function domReplaceTextUsingMapIfExists (selector, map) {
  * @param newText - Replacement text, which replaces oldText (can use regex matching)
  */
 function domReplaceTextInHtmlIfExists (selector, oldText, newText) {
-    let nodes = document.querySelectorAll(selector);
+    const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
         if ((typeof oldText === 'string' && node.innerHTML.includes(oldText)) ||
             (oldText instanceof RegExp && node.innerHTML.match(oldText))) {
@@ -74,7 +74,7 @@ function domReplaceTextInHtmlIfExists (selector, oldText, newText) {
  * @param className - Class to add
  */
 function domAddClassIfExists (selector, containsText, className) {
-    let nodes = document.querySelectorAll(selector);
+    const nodes = document.querySelectorAll(selector);
     for (let node of nodes) {
         if (node.innerText.includes(containsText)) {
             node.classList.add(className);
