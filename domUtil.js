@@ -24,9 +24,9 @@ function domNodeExists (selector) {
 
 /**
  * Replaces the matching elements' innerText if they exist.
- * @param selector - Query selector
- * @param containsText - Text to search for (does not need to be complete)
- * @param newText - Replacement text, which completely replaces the old innerText
+ * @param selector - Query selector.
+ * @param containsText - Text to search for (does not need to be complete).
+ * @param newText - Replacement text, which completely replaces the old innerText.
  */
 function domReplaceTextIfExists (selector, containsText, newText) {
     const nodes = document.querySelectorAll(selector);
@@ -39,7 +39,7 @@ function domReplaceTextIfExists (selector, containsText, newText) {
 
 /**
  * Replaces the matching elements' innerText if they exist.
- * @param selector - Query selector
+ * @param selector - Query selector.
  * @param map - Map of original text (must match entirely) to new text mapping.
  */
 function domReplaceTextUsingMapIfExists (selector, map) {
@@ -52,10 +52,27 @@ function domReplaceTextUsingMapIfExists (selector, map) {
 }
 
 /**
+ * Replaces the matching elements' innerHTML with the given child tag and inner text.
+ * @param selector - Query selector.
+ * @param childTag - Type of child tag to inject (DOM_A / DOM_SPAN; default is DOM_SPAN).
+ * @param newText - Replacement text, which will show in place of old contents.
+ */
+const DOM_A = 'a', DOM_SPAN = 'span';
+function domReplaceWithChildTagIfExists (selector, childTag, newText) {
+    const nodes = document.querySelectorAll(selector);
+    for (let node of nodes) {
+        const newChildNode = document.createElement((childTag === DOM_A) ? 'a' : 'span');
+        newChildNode.innerText = newText;
+        node.innerHTML = '';
+        node.appendChild(newChildNode);
+    }
+}
+
+/**
  * Replaces the matching elements' innerHTML if they exist.
- * @param selector - Query selector
- * @param oldText - Text to replace (in it's entirety, or a regex)
- * @param newText - Replacement text, which replaces oldText (can use regex matching)
+ * @param selector - Query selector.
+ * @param oldText - Text to replace (in it's entirety, or a regex).
+ * @param newText - Replacement text, which replaces oldText (can use regex matching).
  */
 function domReplaceTextInHtmlIfExists (selector, oldText, newText) {
     const nodes = document.querySelectorAll(selector);

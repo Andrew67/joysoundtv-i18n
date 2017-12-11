@@ -85,14 +85,14 @@ domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文
 domReplaceTextIfExists('a', 'はい', 'Yes');
 domReplaceTextIfExists('a', 'いいえ', 'No');
 domReplaceTextIfExists('button', '閉じる', 'OK');
-domReplaceTextInHtmlIfExists('ul#gnav > li.g01 > a', /.*/, '<span>How-to</span>');
-domReplaceTextInHtmlIfExists('ul#gnav > li.g02 > a', /.*/, '<span>Categories</span>');
+domReplaceWithChildTagIfExists('ul#gnav > li.g01 > a', DOM_SPAN, 'How-to');
+domReplaceWithChildTagIfExists('ul#gnav > li.g02 > a', DOM_SPAN, 'Categories');
 domReplaceTextUsingMapIfExists('ul#gnav > li.g02 > ul.sub a', categories);
-domReplaceTextInHtmlIfExists('ul#gnav > li.g03 > a', /.*/, '<span>My Data</span>');
+domReplaceWithChildTagIfExists('ul#gnav > li.g03 > a', DOM_SPAN, 'My Data');
 domReplaceTextUsingMapIfExists('ul#gnav > li.g03 > ul.sub a', mydata_sections);
-domReplaceTextInHtmlIfExists('ul#gnav > li.g04 > a', /.*/, '<span>Queue</span>');
-domReplaceTextInHtmlIfExists('ul#gnav > li.g05 > a', /.*/, '<span>Search</span>');
-domReplaceTextInHtmlIfExists('a[href="/kyokunavi/ps3/session/logout"]', /.*/, '<span>Log Out</span>');
+domReplaceWithChildTagIfExists('ul#gnav > li.g04 > a', DOM_SPAN, 'Queue');
+domReplaceWithChildTagIfExists('ul#gnav > li.g05 > a', DOM_SPAN, 'Search');
+domReplaceWithChildTagIfExists('a[href="/kyokunavi/ps3/session/logout"]', DOM_SPAN, 'Log Out');
 
 // Translate the login page (by detecting the login header)
 if (domNodeExists('h2.subtitle.login')) {
@@ -103,7 +103,7 @@ if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextInHtmlIfExists('p.mb30', 'ログイン状態を保持する', '<label for="el">Stay logged in</label>');
     domReplaceTextIfExists('ul.kome > li', 'ログアウト', '※ Logging out will undo the "Stay logged in" option.');
     domAddClassIfExists('p.btn', '', 'loginBtn');
-    domReplaceTextInHtmlIfExists('.loginBtn > a', /.*/, '<span>Log In</span>');
+    domReplaceWithChildTagIfExists('.loginBtn > a', DOM_SPAN, 'Log In');
 
     domReplaceTextInHtmlIfExists('p.message', /.*パスワードが間違っています.*/,
         'The Password is incorrect.<br>(QR Codes are valid from one hour after they are issued. Please enter a reissued QR Code or Password.)');
@@ -117,27 +117,27 @@ if (domNodeExists('h2.subtitle.pp')) {
     domReplaceTextIfExists('h2.subtitle.bl', '', 'Search Menu');
 
     domReplaceTextIfExists('h2.subtitle.pp', '', 'Categories');
-    domReplaceTextInHtmlIfExists('ul.info li.i01 a', /.*/, '<span>' + categories.get('総合ランキング') + '</span>');
-    domReplaceTextInHtmlIfExists('ul.info li.i02 a', /.*/, '<span>' + categories.get('新着曲') + '</span>');
-    domReplaceTextInHtmlIfExists('ul.info li.i03 a', /.*/, '<span>' + categories.get('ジャンル別ランキング') + '</span>');
-    domReplaceTextInHtmlIfExists('ul.info li.i04 a', /.*/, '<span>' + categories.get('特集') + '</span>');
+    domReplaceWithChildTagIfExists('ul.info li.i01 a', DOM_SPAN, categories.get('総合ランキング'));
+    domReplaceWithChildTagIfExists('ul.info li.i02 a', DOM_SPAN, categories.get('新着曲'));
+    domReplaceWithChildTagIfExists('ul.info li.i03 a', DOM_SPAN, categories.get('ジャンル別ランキング'));
+    domReplaceWithChildTagIfExists('ul.info li.i04 a', DOM_SPAN, categories.get('特集'));
 
     domReplaceTextIfExists('h2.subtitle.gr', '', 'My Data');
-    domReplaceTextInHtmlIfExists('ul.mydata li.m01 a', /.*/, '<span>' + mydata_sections.get('マイうた') + '</span>');
-    domReplaceTextInHtmlIfExists('ul.mydata li.m02 a', /.*/, '<span>' + mydata_sections.get('マイアーティスト') + '</span>');
-    domReplaceTextInHtmlIfExists('ul.mydata li.m03 a', /.*/, '<span>' + mydata_sections.get('りれき') + '</span>');
+    domReplaceWithChildTagIfExists('ul.mydata li.m01 a', DOM_SPAN, mydata_sections.get('マイうた'));
+    domReplaceWithChildTagIfExists('ul.mydata li.m02 a', DOM_SPAN, mydata_sections.get('マイアーティスト'));
+    domReplaceWithChildTagIfExists('ul.mydata li.m03 a', DOM_SPAN, mydata_sections.get('りれき'));
 }
 
 // Translate search form
 if (domNodeExists('[name=webtool_search_form]')) {
     domReplaceTextUsingMapIfExists('select.genre > option', genres);
-    domReplaceTextInHtmlIfExists('#search_type_song span', /.*/, '<a>Title</a>');
-    domReplaceTextInHtmlIfExists('#search_type_artist span', /.*/, '<a>Artist</a>');
-    domReplaceTextInHtmlIfExists('#search_type_keyword span', /.*/, '<a>Keyword</a>');
-    domReplaceTextInHtmlIfExists('#search_type_karaoke_id span', /.*/, '<a>Song ID</a>');
+    domReplaceWithChildTagIfExists('#search_type_song span', DOM_A, 'Title');
+    domReplaceWithChildTagIfExists('#search_type_artist span', DOM_A, 'Artist');
+    domReplaceWithChildTagIfExists('#search_type_keyword span', DOM_A, 'Keyword');
+    domReplaceWithChildTagIfExists('#search_type_karaoke_id span', DOM_A, 'Song ID');
     domReplaceTextIfExists('#match_type_partial_label', '', 'Contains');
     domReplaceTextIfExists('#match_type_head_label', '', 'Starts with');
-    domReplaceTextInHtmlIfExists('.search_btn > a', /.*/, '<span>Search</span>');
+    domReplaceWithChildTagIfExists('.search_btn > a', DOM_SPAN, 'Search');
 }
 
 // Translate search query (can appear in main page as well as search results page)
