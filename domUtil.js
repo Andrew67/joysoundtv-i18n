@@ -79,7 +79,23 @@ function domReplaceTextInHtmlIfExists (selector, oldText, newText) {
     for (let node of nodes) {
         if ((typeof oldText === 'string' && node.innerHTML.includes(oldText)) ||
             (oldText instanceof RegExp && node.innerHTML.match(oldText))) {
+            console.warn('Unsafe use of innerHTML');
             node.innerHTML = node.innerHTML.replace(oldText, newText);
+        }
+    }
+}
+
+/**
+ * Calls the given callback for every matched element, if they exist.
+ * @param selector - Query selector.
+ * @param containsText - Text to search for (does not need to be complete).
+ * @param callback - Function to call for every element (gets element as a parameter).
+ */
+function domDoCallbackIfExists (selector, containsText, callback) {
+    const nodes = document.querySelectorAll(selector);
+    for (let node of nodes) {
+        if (node.innerText.includes(containsText)) {
+            callback(node);
         }
     }
 }

@@ -100,15 +100,25 @@ if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextIfExists('h2.subtitle.login', '', 'Log In');
     domReplaceTextIfExists('h3.subtitle.gy', 'パスワード', 'Password (パスワード)');
     domReplaceTextIfExists('h3.subtitle.gy', 'かんたんログイン', 'Easy Login');
-    domReplaceTextInHtmlIfExists('p.mb30', 'ログイン状態を保持する', '<label for="el">Stay logged in</label>');
+    domDoCallbackIfExists('p.mb30', 'ログイン状態を保持する', function (el) {
+        const newLabel = document.createElement('label');
+        newLabel.setAttribute('for', 'el');
+        newLabel.innerText = 'Stay logged in';
+        el.replaceChild(newLabel, el.childNodes[1]);
+    });
     domReplaceTextIfExists('ul.kome > li', 'ログアウト', '※ Logging out will undo the "Stay logged in" option.');
     domAddClassIfExists('p.btn', '', 'loginBtn');
     domReplaceWithChildTagIfExists('.loginBtn > a', DOM_SPAN, 'Log In');
 
-    domReplaceTextInHtmlIfExists('p.message', /.*パスワードが間違っています.*/,
-        'The Password is incorrect.<br>(QR Codes are valid from one hour after they are issued. Please enter a reissued QR Code or Password.)');
-    domReplaceTextInHtmlIfExists('p.message', /.*有効期限が切れています.*/,
-        'The QR Code or Password you have entered is expired.<br>Please enter a reissued QR Code or Password.');
+    domDoCallbackIfExists('p.message', 'パスワードが間違っています', function (el) {
+        el.innerHTML = 'The Password is incorrect.<br>' +
+            '(QR Codes are valid from one hour after they are issued. Please enter a reissued QR Code or Password.)';
+    });
+
+    domDoCallbackIfExists('p.message', '有効期限が切れています', function (el) {
+        el.innerHTML = 'The QR Code or Password you have entered is expired.<br>' +
+            'Please enter a reissued QR Code or Password.';
+    });
     domReplaceTextIfExists('p.message', 'パスワードを入力してください。', 'Please enter a Password.');
 }
 
