@@ -198,6 +198,7 @@ if (domNodeExists('span#paging_root, ul.reserve_list') ||
     domReplaceTextIfExists('.reserve_m a', '全国採点', 'Ranking');
     domReplaceTextIfExists('.reserve_m a', '分析採点', 'Analysis');
     domReplaceTextIfExists('.reserve_m a', '採点オフ', 'Off');
+    domReplaceTextIfExists('#schedule_add_sub h2:first-child', '', 'Reservation complete.');
 
     domReplaceTextIfExists('.result_btn dt', '●登録', '● My Data');
     // CSS is used to provide the "Save/Delete" text
