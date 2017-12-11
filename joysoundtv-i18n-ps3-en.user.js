@@ -80,8 +80,9 @@ const months = ['', 'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
 
 // Translate global strings
-domReplaceTextInHtmlIfExists('p.copyright', /.*※当サイトのすべての文章や画像などの無断転載・引用を禁じます。/,
-    "※ Unauthorized reproduction of this website's content is forbidden.");
+domDoCallbackIfExists('p.copyright', '※当サイトのすべての文章や画像などの無断転載・引用を禁じます。', function (el) {
+    el.childNodes[0].textContent = "※ Unauthorized reproduction of this website's content is forbidden.";
+});
 domReplaceTextIfExists('a', 'はい', 'Yes');
 domReplaceTextIfExists('a', 'いいえ', 'No');
 domReplaceTextIfExists('button', '閉じる', 'OK');
