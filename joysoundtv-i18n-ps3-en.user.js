@@ -154,12 +154,12 @@ if (domNodeExists('[name=webtool_search_form]')) {
 // Translate search query (can appear in main page as well as search results page)
 domAddClassIfExists('title, h2.subtitle.bl, h2.subtitle.pp02, h2.subtitle.gr', '', 'hasSearchParam');
 const iw = new URLSearchParams(document.location.search.substring(1)).get('iw');
-domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」で検索中/, function (match, p1) {
+domReplaceTextIfExists('.hasSearchParam', /「(.*)」で検索中/, function (match, p1) {
     return 'Searching for: ' + (htmlEntities(iw) || p1);
 });
 
 // Genre search
-domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, function (match, p1) {
+domReplaceTextIfExists('.hasSearchParam', /「(.*)」を検索中/, function (match, p1) {
     if (genres.has(p1)) return 'Searching for genre: ' + genres.get(p1);
     return 'Searching for: ' + p1;
 });
@@ -169,21 +169,20 @@ domReplaceTextInHtmlIfExists('.hasSearchParam', /「(.*)」を検索中/, functi
 if (domNodeExists('span#paging_root, ul.reserve_list') ||
     (domNodeExists('h2.subtitle.gr') && !domNodeExists('h2.subtitle.pp'))) {
     // Song ID search
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search' +
-        (iw ? ': ' + htmlEntities(iw) : ''));
+    domReplaceTextIfExists('.hasSearchParam', /選曲番号検索/, 'Song ID Search' + (iw ? ': ' + htmlEntities(iw) : ''));
 
     // Navigation
-    domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /^1件\((.*)件目表示\)/, '1 result');
-    domReplaceTextInHtmlIfExists('#paging_root > p.mb10.clear', /(.*)件\((.*)件目表示\)/, '$1 results (displaying $2)');
-    domReplaceTextInHtmlIfExists('.pagenav .prev a', /前の(.*)件/, ' Previous $1');
-    domReplaceTextInHtmlIfExists('.pagenav .next a', /次の(.*)件/, 'Next $1 ');
+    domReplaceTextIfExists('#paging_root > p.mb10.clear', /^1件\((.*)件目表示\)/, '1 result');
+    domReplaceTextIfExists('#paging_root > p.mb10.clear', /(.*)件\((.*)件目表示\)/, '$1 results (displaying $2)');
+    domReplaceTextIfExists('.pagenav .prev a', /前の(.*)件/, ' Previous $1');
+    domReplaceTextIfExists('.pagenav .next a', /次の(.*)件/, 'Next $1 ');
     domReplaceTextIfExists('p.mark_ps3', '採点不可', 'Scoring unavailable');
 
     // Hide the rank kanji for ranking lists
-    domReplaceTextInHtmlIfExists('li.item_song_option p.ranking', '位', '');
+    domReplaceTextIfExists('li.item_song_option p.ranking', '位', '');
 
     // Song queue header and options
-    domReplaceTextInHtmlIfExists('title', '予約一覧', 'Queue');
+    domReplaceTextIfExists('title', '予約一覧', 'Queue');
     domReplaceTextIfExists('h2.subtitle.ye', '予約一覧', 'Queue');
     domReplaceTextIfExists('.reserve_list a', '選択削除', 'Delete selected');
     domReplaceTextIfExists('#schedule_selectdel_confirm h2:first-child', /.*/, 'Delete selected songs from the queue?');
@@ -225,36 +224,38 @@ if (domNodeExists('span#paging_root, ul.reserve_list') ||
     // Translate category types and genres when showing the category pages
     domReplaceTextUsingMapIfExists('.hasSearchParam', categories);
     domReplaceTextUsingMapIfExists('.hasSearchParam', genres);
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
+    domReplaceTextIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
         if (categories.has(p1)) return categories.get(p1) + ' |';
         return p1 + ' |';
     });
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
+    domReplaceTextIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
         if (genres.has(p1)) return genres.get(p1) + ' |';
         return p1 + ' |';
     });
     domReplaceTextUsingMapIfExists('.item_category a', genres);
 
     // Translate new arrivals
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /新着曲/, categories.get('新着曲') + ' ');
-    domReplaceTextInHtmlIfExists('.item_category a', /(.*)月(.*)日の新着一覧へ/, function (match, p1, p2) {
+    domReplaceTextIfExists('.hasSearchParam', /新着曲/, categories.get('新着曲') + ' ');
+    domReplaceTextIfExists('.item_category a', /(.*)月(.*)日の新着一覧へ/, function (match, p1, p2) {
         return months[p1] + ' ' + p2;
     });
 
     // Translate featured categories
     // Strip the "featured" marker, then match using the map (like for genres)
-    domReplaceTextInHtmlIfExists('.hasSearchParam, .item_category a', /特集[　 ]/, '');
+    domReplaceTextIfExists('.hasSearchParam, .item_category a', /特集[　 ]/, '');
     domReplaceTextUsingMapIfExists('.hasSearchParam, .item_category a', featured_categories);
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
+    domReplaceTextIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
         if (featured_categories.has(p1)) return featured_categories.get(p1) + ' |';
         return p1 + ' |';
     });
 
     // Translate "My Data" sections
     domReplaceTextUsingMapIfExists('.hasSearchParam', mydata_sections);
-    domReplaceTextInHtmlIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
+    domReplaceTextIfExists('.hasSearchParam', /^(.*) \|/, function (match, p1) {
         if (mydata_sections.has(p1)) return mydata_sections.get(p1) + ' |';
         return p1 + ' |';
     });
-    domReplaceTextInHtmlIfExists('.inner', /登録されていません。/, 'No entries.');
+    domDoCallbackIfExists('.inner', '登録されていません。', function (el) {
+        el.childNodes[el.childNodes.length - 1].textContent = 'No entries.';
+    });
 }

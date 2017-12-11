@@ -71,23 +71,6 @@ function domReplaceWithChildTagIfExists (selector, childTag, newText) {
 }
 
 /**
- * Replaces the matching elements' innerHTML if they exist.
- * @param selector - Query selector.
- * @param oldText - Text to replace (in its entirety, or a regex).
- * @param newText - Replacement text, which replaces oldText (can use regex matching).
- */
-function domReplaceTextInHtmlIfExists (selector, oldText, newText) {
-    const nodes = document.querySelectorAll(selector);
-    for (let node of nodes) {
-        if ((typeof oldText === 'string' && node.innerHTML.includes(oldText)) ||
-            (oldText instanceof RegExp && node.innerHTML.match(oldText))) {
-            console.warn('Unsafe use of innerHTML');
-            node.innerHTML = node.innerHTML.replace(oldText, newText);
-        }
-    }
-}
-
-/**
  * Calls the given callback for every matched element, if they exist.
  * @param selector - Query selector.
  * @param containsText - Text to search for (does not need to be complete).
