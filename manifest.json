@@ -20,8 +20,9 @@
     }
   ],
   "icons": {
-    "48": "noun_975688_cc.svg",
-    "96": "noun_975688_cc.svg"
+    "48": "noun_975688_cc-48.png",
+    "64": "noun_975688_cc-64.png",
+    "96": "noun_975688_cc-96.png"
   },
   "applications": {
     "gecko": {
