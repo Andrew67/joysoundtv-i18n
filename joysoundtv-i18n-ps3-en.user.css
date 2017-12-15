@@ -87,6 +87,10 @@ ul#gnav > li.g04 > a > span {
 }
 
 /* Search box */
+#iw {
+    width: 500px;
+}
+
 .search_box > .search_btn > a {
     background-repeat: repeat-x;
     background-position-x: -15px;
@@ -95,7 +99,6 @@ ul#gnav > li.g04 > a > span {
     font-size: 24px;
     font-weight: bold;
 }
-
 .search_box > .search_btn > a > span {
     background: linear-gradient(to bottom, #ededed, #d2d2d2);
     display: inline-block;

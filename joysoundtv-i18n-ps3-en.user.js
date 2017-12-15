@@ -121,6 +121,8 @@ if (domNodeExists('h2.subtitle.login')) {
             'Please enter a reissued QR Code or Password.';
     });
     domReplaceTextIfExists('p.message', 'パスワードを入力してください。', 'Please enter a Password.');
+    domReplaceTextIfExists('p.message', 'かんたんログインが無効になりました。', 'Easy Login has been invalidated.');
+    domReplaceTextIfExists('p.message', '再度ログインしてください。', 'Please log in again.');
 }
 
 // Translate main menu page (by detecting the categories header)
