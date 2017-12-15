@@ -1,7 +1,7 @@
 # joysoundtv-i18n
 WebExtension which translates the JoySound.TV KyokuNavi (Web UI)
 
-Supported versions:
+Supported consoles:
 * PlayStation 3
 
 Supported target languages:
@@ -9,6 +9,9 @@ Supported target languages:
 
 Supported browsers:
 * Firefox 57+
+
+Supported device sizes:
+* Desktop/tablet (width >= 768px)
 
 Licenses:
 * Code: GPL-3.0 (see LICENSE file)
