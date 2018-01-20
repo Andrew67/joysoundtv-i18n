@@ -123,6 +123,7 @@ if (domNodeExists('h2.subtitle.login')) {
     domReplaceTextIfExists('p.message', 'パスワードを入力してください。', 'Please enter a Password.');
     domReplaceTextIfExists('p.message', 'かんたんログインが無効になりました。', 'Easy Login has been invalidated.');
     domReplaceTextIfExists('p.message', '再度ログインしてください。', 'Please log in again.');
+    domReplaceTextIfExists('p.message', 'セッションタイムアウトしました。', 'The session has timed out.');
 }
 
 // Translate main menu page (by detecting the categories header)
