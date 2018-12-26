@@ -1,5 +1,7 @@
-Current Version
+Version 1.1
 - Added "Session has timed out" message translation.
+- Added PS4 KyokuNavi support.
+- Added "Could not find matching artist" error message translation.
 
 Version 1.0
 - Initial release.

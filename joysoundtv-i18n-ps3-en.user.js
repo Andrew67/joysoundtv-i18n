@@ -132,6 +132,8 @@ if (domNodeExists('h2.subtitle.pp')) {
     domReplaceTextIfExists('div.error', '選曲番号を正しく入力してください。', 'Please enter a valid Song ID.');
     domReplaceTextIfExists('div.error', '検索条件に該当する楽曲が見つかりませんでした。',
         'Unable to find songs that match the given search criteria.');
+    domReplaceTextIfExists('div.error', '検索条件に該当する歌手が見つかりませんでした。',
+        'Unable to find artists that match the given search criteria.');
     domReplaceTextIfExists('div.error', '検索のヒント：ひらがなでも検索することができます。',
         'Search tip: Searching using hiragana (ひらがな) is also possible.');
 

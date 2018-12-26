@@ -3,6 +3,7 @@ Unofficial extension which translates the JoySound.TV KyokuNavi (Web UI)
 
 Supported consoles:
 * PlayStation 3
+* PlayStation 4
 
 Supported target languages:
 * en-US
