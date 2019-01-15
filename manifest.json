@@ -4,7 +4,7 @@
   "version": "1.1",
   "author": "Andrew67 Software",
   "homepage_url": "https://github.com/Andrew67/joysoundtv-i18n",
-  "description": "Translates the PS3 KyokuNavi to English. karaoke by Becris from the Noun Project",
+  "description": "Translates the PS3/PS4 KyokuNavi to English. karaoke by Becris from the Noun Project",
   "content_scripts": [
     {
       "matches": [
